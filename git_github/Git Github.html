@@ -1,0 +1,598 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Git &amp; Github</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	opacity: 0.5;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif; }
+.mono { font-family: Nitti, 'Microsoft YaHei', '微软雅黑', monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, KaiTi, STKaiTi, '华文楷体', KaiTi_GB2312, '楷体_GB2312', serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, Nitti, 'Microsoft YaHei', '微软雅黑', monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="fd3231be-78d6-4c87-b714-ad5b77d9cf15" class="page sans"><header><h1 class="page-title">Git &amp; Github</h1><table class="properties"><tbody><tr class="property-row property-row-file"><th>Files</th><td></td></tr><tr class="property-row property-row-multi_select"><th>Tags</th><td></td></tr></tbody></table></header><div class="page-body"><nav id="9f9a7d09-1873-43c2-9b96-726e1c7d6029" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f63d096c-c004-4588-a969-601840536566">#0. 다시 공부하는 Git &amp; Github</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#7486310d-4c8b-40d8-a8d7-28ca279985f3">#1. Unit 1. Git &amp; Github 소개</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bb56d245-71bb-4b5e-979e-941a2b98f1c9">Summary</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#33e72991-1180-455a-8cd5-ea82358a97ed">#2. Git&amp; Github 개념</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fe88f572-6cf2-424f-aa7e-edeb7eaa9b08">git data transport commands</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#44be3563-32d1-4f86-9b8b-c0e13148700a">Working Directory, Local Repository, Remote Repository</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5dd8e0b4-e4c0-4dcd-8ccb-ff438ef126ab"> git init, add, commit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a2c5cda7-b1cd-414e-8953-ac3866003e30">checkout</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e5615b8f-e04f-456c-9b07-c3e1f31d3535">Checkout → add → commit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#480b25b2-223a-4bc7-b0c6-e8a83d6aac24">Summary</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6fdfb6be-214d-486b-a19a-84b666f98430">Git의 다양한 명령어 </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9c31cb68-e839-4338-ab9e-f8c783a1fbbd">#3. 실습</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#57a4b701-3654-4d5d-aa6c-8068b8ad07f8">1) Git add와 commit</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#34ec9fb1-8dd8-4414-9b1c-20c1e1a9d199">2) branch 생성과 merge</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0c4a6958-a7d0-43b7-bbfe-8c1ec342881e">master 브랜치에서 test 브랜치 merge</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#f9368585-8690-4ff1-8f86-a8b766584967">항상 merge가 잘 될까?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b398c525-739e-4a9b-87a6-dc47f6d1abbc">test2 브랜치 생성 후 이동 / edit a.py</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b8d2f6c3-408b-4933-836e-20663d52f5ed">master 브랜치로 이동/edit a.py</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cb6b2c77-db86-427a-be71-e913143db138">#4. 유용한 팁</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#077501cb-3d98-496f-9aba-437cae2fbfc3">1. 원격저장소와 연결</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#bd1f69bc-a7c4-46b6-aeee-46f5e2203f6b">2. 원격 저장소에서 로컬 저장소로 업데이트하는 방법</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4f4732cb-5797-45ad-a37a-95643c555dda">원격 저장소 → 로컬 저장소 pull(fetch &amp; merge)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9d97827f-40e5-4c3b-8e8e-310590888279">3. git configuration</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4c877b67-32b9-4a7d-b993-699b3043c202">4. 많이 쓰이는 패턴</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b97f5416-e89d-48b0-b55b-273bacc35adf">많이 쓰이는 패턴</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8c03e82e-10a7-4925-bb52-8a99ed1023d5">#8. Reference</a></div></nav><p id="7116a3aa-67f4-41dd-9cfc-e63a06c648fe" class="">
+</p><h2 id="f63d096c-c004-4588-a969-601840536566" class="">#0. 다시 공부하는 Git &amp; Github</h2><ul id="4db7952d-3ebf-4d25-900e-ce92ddd3db43" class="bulleted-list"><li>Remote 저장소에 있는 파일 저장 및 관리</li></ul><ul id="e6432b85-8a9f-4176-badd-14b0320a03db" class="bulleted-list"><li>협업이 가능하도록 저장소를 관리 하는 방법</li></ul><ul id="9fc41b8f-762c-45a8-acd1-3a603a11c6e3" class="bulleted-list"><li>기타 꼭 알아야하는 기본 지식부터 알아두면 좋은 팁까지!</li></ul><p id="aa250cb7-8876-4de4-91bf-353484c0c0da" class="">⇒ 다시 공부하면서 하나하나 정복해나가자</p><p id="611537c8-8c0a-488f-9f68-471c0238a0cc" class="">
+</p><h2 id="7486310d-4c8b-40d8-a8d7-28ca279985f3" class="">#1. Unit 1. Git &amp; Github 소개</h2><figure id="ef0a6916-07ef-4e4c-99c5-adf2ce0e8a1c" class="image"><a href="Git%20Github/Untitled.png"><img style="width:1081px" src="Git%20Github/Untitled.png"/></a></figure><blockquote id="7e67f208-4fe0-4ca1-82e3-261365eab59f" class="">파일의 이름은 그대로 두고 버전 관리는 컴퓨터가 하게 하자</blockquote><p id="c0b4ffb6-720e-4adf-8a84-bc22008707c4" class="">언제까지 model_v1.py, model_v2.py, model_v3.py... 이렇게 관리할래?</p><p id="0dc51728-10fd-4a73-ad57-a0d5484547dd" class="">
+</p><figure id="7ed8b9e5-8bc0-447f-9b2f-3a67f8515ca1" class="image"><a href="Git%20Github/Untitled%201.png"><img style="width:348px" src="Git%20Github/Untitled%201.png"/></a></figure><p id="8c7f9a4e-fbe9-4298-bb33-58eb8053c59a" class="">
+</p><figure id="7affa3ac-ac88-4138-a620-09e09e792e4a" class="image"><a href="Git%20Github/Untitled%202.png"><img style="width:904px" src="Git%20Github/Untitled%202.png"/></a></figure><p id="cebbfe83-38a9-458b-94ec-805772c40b6e" class="">
+</p><h3 id="bb56d245-71bb-4b5e-979e-941a2b98f1c9" class="">Summary</h3><ul id="8bf95935-1825-47bd-b8dc-63ac31de3b54" class="bulleted-list"><li>Git is version management tool using local repository</li></ul><ul id="b272218b-09a9-41fd-9ddb-c88d8f434bb3" class="bulleted-list"><li>Github is remote repository for collaboration by multiple git users</li></ul><p id="bddffd2a-350a-495e-bfd4-41fb5f9e567b" class="">
+</p><p id="b700609f-af9e-46ca-92d7-af5b19b6db7e" class="">생각을 해보자...</p><p id="d93603bd-c83a-4c0e-b555-b7cd15ff835d" class="">git은 로컬 저장소를 사용하는 버전관리 툴이야</p><p id="30d6bf7c-d01e-4f0f-8a26-ca4dc40b5ba5" class="">github은 원격 저장소야. 왜 원격 저장소지? 다양한 깃 유저들과 함께 협업하기 위함이야</p><p id="ef63aceb-f7b6-4d01-815c-3a8295037f95" class="">keep going</p><p id="8d86a529-c1af-41ac-93a5-cf8b8a93ee2e" class="">
+</p><h2 id="33e72991-1180-455a-8cd5-ea82358a97ed" class="">#2. Git&amp; Github 개념</h2><h3 id="fe88f572-6cf2-424f-aa7e-edeb7eaa9b08" class="">git data transport commands</h3><p id="b05ef4e5-cd4a-494c-b0b2-a667041f8f0a" class="">(git에서 데이터 전송 명령어들)</p><figure id="14cdb67d-dcc7-402c-96a2-e14f8d8029c4" class="image"><a href="Git%20Github/Untitled%203.png"><img style="width:1145px" src="Git%20Github/Untitled%203.png"/></a></figure><p id="fd97d048-879e-437d-acff-effbebc19d93" class="">
+</p><h3 id="44be3563-32d1-4f86-9b8b-c0e13148700a" class="">Working Directory, Local Repository, Remote Repository</h3><figure id="32674178-ef22-4854-9aef-08b6f8203107" class="image"><a href="Git%20Github/Untitled%204.png"><img style="width:960px" src="Git%20Github/Untitled%204.png"/></a></figure><p id="01417fce-34ec-48a8-9efa-78230cf9c7cf" class="">⇒ 그래서 각각의 역할이 뭔데요?</p><ul id="c9a192f9-010c-424c-ac04-ba9b781b6771" class="bulleted-list"><li><strong>Working Directory</strong>: 내 PC안의 작업공간들 중 <mark class="highlight-teal_background">git을 사용하는 작업공간</mark></li></ul><ul id="c58fed12-24bd-4226-9e96-bcdd2ca40625" class="bulleted-list"><li><strong>Index</strong>: 임시 버전들이 올라가는 공간</li></ul><ul id="a45da24a-c9fb-47b6-b774-c6a9ef3d81af" class="bulleted-list"><li><strong>Local Repository</strong>: 최종 확정본이 올라가는 공간개인 PC에 파일이 저장되는 개인 전용 저장소</li></ul><ul id="1dd86d4d-f5e2-4bb8-9491-f8c3d51588b4" class="bulleted-list"><li><strong>Remote Repository</strong>: 파일이 원격저장소 전용 서버에 올라가는 공간</li></ul><p id="ae28d602-5922-41c3-9e73-d014678615a5" class="">
+</p><h3 id="5dd8e0b4-e4c0-4dcd-8ccb-ff438ef126ab" class=""> git init, add, commit</h3><figure id="28773e1b-78bf-4e53-88aa-ecadd672aa62" class="image"><a href="Git%20Github/Untitled%205.png"><img style="width:1021px" src="Git%20Github/Untitled%205.png"/></a></figure><p id="269e16e4-67a1-4552-a7f0-78d7ece6d220" class="">내 pc안에서 작업하다가 저장 또는 관리가 필요한 파일을을 add한다.</p><p id="dcf98357-b84e-4bcf-b966-9d868ac1833f" class="">add한 파일들 중 최종 확정본을 commit을 통해 Local Repository에 올린다.</p><p id="cede9cd9-296e-488d-b401-310b0c639fc5" class="">
+</p><h3 id="a2c5cda7-b1cd-414e-8953-ac3866003e30" class="">checkout</h3><figure id="b7e5d1d6-1271-4102-bf5e-3bf1c25f5d24" class="image"><a href="Git%20Github/Untitled%206.png"><img style="width:1045px" src="Git%20Github/Untitled%206.png"/></a></figure><p id="fd253449-8a48-45cf-9f7d-9047996b9045" class="">
+</p><h3 id="e5615b8f-e04f-456c-9b07-c3e1f31d3535" class="">Checkout → add → commit</h3><figure id="9b0731e4-8799-412c-8c2a-f6003a588c5f" class="image"><a href="Git%20Github/Untitled%207.png"><img style="width:1107px" src="Git%20Github/Untitled%207.png"/></a></figure><p id="7d9ad925-39a6-47bd-a2f7-4439c8d21bfe" class="">
+</p><ul id="d1c7e8ae-8c96-4009-b498-b38560d7a8c1" class="bulleted-list"><li>Local repository와 Remote repository란 무엇인가?</li></ul><p id="c3c73448-16b7-40ff-b788-801fd2544bea" class="">→ 그래서 Local repository와 Remote repository가 뭔데?</p><figure id="09183ebd-a678-46e0-acf1-3f057a0600c1" class="image"><a href="Git%20Github/Untitled%208.png"><img style="width:947px" src="Git%20Github/Untitled%208.png"/></a></figure><ul id="5142afe9-f9d5-4ca9-8584-7cf93356bd2f" class="bulleted-list"><li>Example<ul id="e85d777a-5157-4b9a-8eb2-525ec85f469e" class="bulleted-list"><li>Local repository: 연구실 컴퓨터, 집 데스크탑, 맥북</li></ul><ul id="8611acfe-88ee-4c83-a98f-c8e7b9f2b062" class="bulleted-list"><li>Remote repository: 여러 사람이 공유하기 위한 저장소, <a href="https://github.com/Steve-YJ">Steve-YJ github</a></li></ul><p id="ca1f237f-2b42-4291-b7c9-5f2596e4f974" class="">
+</p></li></ul><figure id="54253ff2-39d5-4b17-a1fd-3923ac11280c" class="image"><a href="Git%20Github/Untitled%209.png"><img style="width:720px" src="Git%20Github/Untitled%209.png"/></a></figure><figure id="dfdf96e0-ee41-40e8-8fd5-795b7a91d873" class="image"><a href="Git%20Github/Untitled%2010.png"><img style="width:925px" src="Git%20Github/Untitled%2010.png"/></a></figure><figure id="2e776275-5242-41f6-98ad-926e20a8862a" class="image"><a href="Git%20Github/Untitled%2011.png"><img style="width:928px" src="Git%20Github/Untitled%2011.png"/></a></figure><h3 id="480b25b2-223a-4bc7-b0c6-e8a83d6aac24" class="">Summary</h3><p id="e84225b8-9b78-43eb-b9b2-5c0102a1a202" class=""><em>이것 만큼은 알고 넘어가자</em></p><ul id="73ac52d0-b72e-4379-8bfa-81ae6d04ecdf" class="bulleted-list"><li>Git이란 local repository의 버전관리를 위한 툴이다.</li></ul><ul id="7ea2c1aa-2d24-4ab3-ab86-7d10b031759a" class="bulleted-list"><li>Github은 원격서버를 통해 여러사람들이 협업할 수 있도록 파일을 저장하고 관리해준다. </li></ul><ul id="76562319-2e03-4772-a962-e845675991b2" class="bulleted-list"><li>git init, git add, git commit</li></ul><p id="f4d5705d-7362-42ae-b9e1-4cd075a9600c" class="">
+</p><h3 id="6fdfb6be-214d-486b-a19a-84b666f98430" class="">Git의 다양한 명령어 </h3><figure id="4406880b-ac2e-4a05-b4e1-584caef11ae1" class="image"><a href="Git%20Github/Untitled%2012.png"><img style="width:841px" src="Git%20Github/Untitled%2012.png"/></a></figure><p id="72f283aa-cf1c-47e2-919c-0b53c0e17e69" class="">
+</p><p id="51fe4e45-1ffb-4429-8f08-0d3b84328e67" class="">Q. 내 깃에 있는 작업을 그대로 불러다가 하고 싶으면 git pull하면 되는거 아냐?!</p><p id="a744cd08-9e61-4807-8aca-00024b95f277" class="">⇒ 뒤에서 보다 자세히 배우게 됩니다.</p><h2 id="9c31cb68-e839-4338-ab9e-f8c783a1fbbd" class="">#3. 실습</h2><h3 id="57a4b701-3654-4d5d-aa6c-8068b8ad07f8" class="">1) Git add와 commit</h3><ul id="f5944653-81d2-4870-871f-a0961f32ef3a" class="bulleted-list"><li>git add</li></ul><figure id="e09219eb-aebd-43e8-b47b-9c4e18ae3e0a" class="image"><a href="Git%20Github/Untitled%2013.png"><img style="width:538px" src="Git%20Github/Untitled%2013.png"/></a></figure><ul id="8b12091d-ba1f-4997-b2a7-f748978a50a2" class="bulleted-list"><li>git commit</li></ul><figure id="5139c2d8-c16d-4524-a478-b13caa31bff5" class="image"><a href="Git%20Github/Untitled%2014.png"><img style="width:542px" src="Git%20Github/Untitled%2014.png"/></a></figure><p id="95c38fbf-c962-4677-a38b-affadf767f41" class="">⇒ 이로써 Master branch에서 작업한 최종 확정본이 로컬 리퍼지토리(local repository)에 저장된다.</p><p id="3deb7aab-8126-453f-acc6-3194af086ba1" class="">
+</p><h3 id="34ec9fb1-8dd8-4414-9b1c-20c1e1a9d199" class="">2) branch 생성과 merge</h3><ul id="27d6db82-8a74-4a67-bbb5-9d17862cf210" class="bulleted-list"><li>test branch 생성과 Checkout 명령어를 통한 test 브랜치로 이동</li></ul><figure id="6406f01c-60e1-4f4d-b356-51c9bdb91079" class="image"><a href="Git%20Github/Untitled%2015.png"><img style="width:531px" src="Git%20Github/Untitled%2015.png"/></a></figure><p id="86027575-50c6-4362-9cee-4746d71365d6" class="">
+</p><ul id="d709866f-7c85-4a46-b53a-fd3811d4c6e2" class="bulleted-list"><li><a href="http://a.py">a.py</a> 수정</li></ul><figure id="593bc2b3-0969-459a-9be5-ca8750568b78" class="image"><a href="Git%20Github/Untitled%2016.png"><img style="width:242px" src="Git%20Github/Untitled%2016.png"/></a></figure><p id="79dcea3c-b03d-436e-829b-0639ab5d180a" class="">—my name is Youngjeon Lee 라는 기존 a.py파일에</p><p id="f48731d3-cb56-4eda-967d-1f411d60b339" class="">—2020.03.08 sun YJ git-learning를 추가한다.</p><p id="47327570-ca8b-4179-8cda-78f1dff434f0" class="">
+</p><ul id="22cc9481-5f50-4d2f-9194-879da627716f" class="bulleted-list"><li><a href="http://b.py">b.py</a> 작업</li></ul><figure id="51436064-f775-4f59-a943-ee61374d20f9" class="image"><a href="Git%20Github/Untitled%2017.png"><img style="width:119px" src="Git%20Github/Untitled%2017.png"/></a></figure><ul id="5bb0f78c-c2ba-46c7-b201-0d781f992733" class="bulleted-list"><li>git status</li></ul><figure id="07b1e59a-ab7c-4f99-9641-5e398fd4daf7" class="image"><a href="Git%20Github/Untitled%2018.png"><img style="width:534px" src="Git%20Github/Untitled%2018.png"/></a></figure><p id="f450b8dc-725f-42f4-aa64-7832f7352fae" class="">⇒ Let&#x27;s do it</p><p id="1190404b-e842-40ca-a232-f68dd55003c6" class=""><mark class="highlight-orange"><em>해석해보자!</em></mark></p><p id="56b4dbe4-e5e1-4b47-a0a6-aaeee77a081c" class="">기존 master branch에서 test 브랜치로 이동을 한 상태에서 다음의 작업을 수행하였다.</p><ol id="f4325d7d-9419-4fa9-8ba4-5252d850dd0b" class="numbered-list" start="1"><li><a href="http://a.py">a.py</a> 파일 수정(맨 윗줄에 라인 추가)</li></ol><ol id="ac78184e-7118-4103-91f7-c5bed937cabd" class="numbered-list" start="2"><li>b.py파일 생성</li></ol><p id="c6f0d4fc-15a4-4aa3-9577-36a4a816575c" class="">
+</p><p id="e506ec42-3dd8-45a0-a3ac-0f4812889d4b" class="">git status 명령어를 입력했을 때 위의 사진과 같은 출력을 얻게된다.</p><p id="e94ed83f-262e-4078-9593-2dd131e37b5f" class="">a.py의 경우 changes not staged for commit<div class="indented"><p id="ac67ebde-856a-4f12-afce-3eecb751b840" class="">업데이트 내역을 commit 하기 위해 git add 명령어 사용할 것을 권한다.</p><p id="d3b8e100-7659-43fd-bfc3-333002b31cc5" class="">
+</p></div></p><p id="5b727441-43d1-406a-b3b6-1dd82988b274" class="">b.py의 경우 새로 생성했지만 git add를 해주지 않았기에 Untracked file이라는 메세지를 볼 수 있다.</p><p id="670dc2e1-ecf4-4e62-8cc9-47e047ce976a" class="">
+</p><p id="c2565fc1-04ab-4158-97d1-59de9990e2dd" class="">⇒ 그렇다면 이제 내가 해야할 일은</p><p id="3fff3a04-6895-4f5e-8453-a197dd44e6de" class="">git add <a href="http://a.py">a.py</a> b.py가 아닐까?</p><p id="103f847c-7ef0-4756-b33b-5dfb9091c492" class="">
+</p><ul id="305aab74-c04c-46fd-af2f-774aa23adf57" class="bulleted-list"><li>git add -A</li></ul><p id="27f50e66-c859-4dd7-9f40-be5e6d4244ce" class="">git add -A명령어를 통해 워킹디렉터리(working directory)내에 있는 모든 파일들을 추적할 수 있다.</p><p id="40e50b70-4e1b-4aa2-b973-66424055871b" class="">master에서 했던 작업과 마찬가지로 commit을 해줘야 원격저장소를 통해 관리할 수 있게 된다. </p><figure id="8ad8e470-aabd-42d3-bc97-609ba5bc27ca" class="image"><a href="Git%20Github/Untitled%2019.png"><img style="width:523px" src="Git%20Github/Untitled%2019.png"/></a></figure><ul id="5dc4bb03-2820-4d9b-9258-4169fe9160e3" class="bulleted-list"><li>git commit -m &quot;edit <a href="http://a.py">a.py</a> and make b.py&quot;</li></ul><figure id="cc909ce4-3671-4bd1-9d38-3213ff4c77c8" class="image"><a href="Git%20Github/Untitled%2020.png"><img style="width:516px" src="Git%20Github/Untitled%2020.png"/></a></figure><p id="123c8ad8-2ef6-45cf-9a8f-5080d8a6f644" class="">—commit message로 나는 a.py파일을 수정했고 b.py를 만들었어! 라고 입력한다.</p><p id="5937095d-bc4f-4060-beaf-903fb3da37cf" class="">
+</p><ul id="90b69f11-fcda-4271-846a-84bf5bae74f9" class="bulleted-list"><li>git log —branches —decorate —graph —oneline</li></ul><figure id="963fe5b5-f556-4f14-8d47-411810918553" class="image"><a href="Git%20Github/Untitled%2021.png"><img style="width:529px" src="Git%20Github/Untitled%2021.png"/></a></figure><hr id="b2c613f7-1c84-4b2f-bed7-8ab2b014c3bf"/><p id="db3aa02e-b56d-4ca0-bc76-26e4ca4db2e7" class="">지금까지는 test branch에서 작업을 했다.</p><ol id="be186c0c-82a9-40f2-8fec-8cbdb68e0123" class="numbered-list" start="1"><li>Master branch에서 a.py파일을 만들었고 test branch로 이동해서 작업을 했다.</li></ol><ol id="17bdfa9c-9325-4d3e-b58b-98359d6d62a4" class="numbered-list" start="2"><li>test branch에서는 a.py파일을 수정했으며 b.py파일을 만들었다.</li></ol><ol id="69bf6470-1afa-4d84-b3ac-5588f885575e" class="numbered-list" start="3"><li>다시 master branch로 이동한다.</li></ol><hr id="58de2ea7-63d6-44bf-9b51-c1b0477e8b11"/><ul id="aa1be98b-1446-4c95-8476-9eeced8b0d90" class="bulleted-list"><li>master 브랜치 이동/edit a.py<ul id="c3310f96-4fb4-4f4b-a563-df281359384c" class="bulleted-list"><li>master 브랜치 이동 및 <a href="http://a.py">a.py</a> 수정</li></ul></li></ul><figure id="69bddd0a-8ddc-402e-ba91-c3ed82b410e6" class="image"><a href="Git%20Github/Untitled%2022.png"><img style="width:535px" src="Git%20Github/Untitled%2022.png"/></a></figure><figure id="a92c91da-c0cf-4f3d-9ab6-edaed4b7c683" class="image"><a href="Git%20Github/Untitled%2023.png"><img style="width:180px" src="Git%20Github/Untitled%2023.png"/></a></figure><ul id="f8d492b2-12fc-4324-8cf9-62e595e24189" class="bulleted-list"><li>수정된 a.py를 tracking하도록 하고 commit해준다.</li></ul><figure id="2a6fdfaa-cb96-43c2-8575-c7c2b6f4b867" class="image"><a href="Git%20Github/Untitled%2024.png"><img style="width:534px" src="Git%20Github/Untitled%2024.png"/></a></figure><ul id="d0a3066f-ddf0-4835-9799-b14606847e71" class="bulleted-list"><li>git log —branches —decorate —graph —oneline</li></ul><figure id="c8c610ec-93da-4f41-9b63-91f76671a5f5" class="image"><a href="Git%20Github/Untitled%2025.png"><img style="width:543px" src="Git%20Github/Untitled%2025.png"/></a></figure><p id="06e11738-a39b-4655-9993-e19f6b7819c9" class="">위의 그림은 지금까지 한 작업들을 보여준다. 해석해보면 지금까지 작업한 내용들에 대해서 보다 이해가 잘 가리라 생각한다.</p><hr id="7b2155c6-c1df-41e7-8777-fc86e68c6890"/><ul id="326cd529-513d-4d45-a2a7-b997dd65dc39" class="bulleted-list"><li>해석</li></ul><ol id="5de1d8e3-c9b6-42aa-a7b9-72c92eba8244" class="numbered-list" start="1"><li>Master branch: 우리는 master branch에서 처음 작업을 했다. a.py파일을 생성하고 git이 a.py파일을 추적하도록 하여 first commit을 했다.</li></ol><ol id="9c98048f-7416-4d56-8e5f-e87af68f4a33" class="numbered-list" start="2"><li>Checkout to test branch: master branch에서 test branch로 체크아웃을 했다. 여기서 주목할 점은 master branch에서 생성한 <a href="http://a.py">a.py</a>수정과 b.py생성이다. master branch에서 생성한 a.py파일을 test branch로 이동해 작업을 했으며 b.py라는 새로운 파이썬 파일을 생성했다. 작업한 내용을 &#x27;edit a.py and make b.py&#x27;라는 메세지와 함께 commit 했다.</li></ol><ol id="82e6639d-741a-4e85-a5ba-195dae42e404" class="numbered-list" start="3"><li>Checkout from test branch to master branch: test branch에서 다시 master branch로 돌아왔다. 여기서 한 작업은 <a href="http://a.py">a.py</a> 파일을 수정한 것이다. </li></ol><p id="f961bcf8-36e5-4846-a5c6-cc52de1c4fff" class="">⇒ 이제 버전관리가 어떻게 이루어지는지 살펴보도록 하자. </p><hr id="ee7993ba-6f80-467a-ac5b-15de003dd2e2"/><h3 id="0c4a6958-a7d0-43b7-bbfe-8c1ec342881e" class="">master 브랜치에서 test 브랜치 merge</h3><figure id="ffa4453f-08cd-4e40-8ec9-78e120b63e7b" class="image"><a href="Git%20Github/Untitled%2026.png"><img style="width:534px" src="Git%20Github/Untitled%2026.png"/></a></figure><p id="54ba47b2-1f86-4bdc-8303-1836b9f1a134" class="">master브랜치에서 test 브랜치를 merge했다. git log —branches —decorate —graph —oneline 명령어를 통해 작업한 내용들을 살펴보자.</p><p id="194c8686-4e5c-4d5e-9f3c-5727d00e1262" class="">
+</p><figure id="ce3f28aa-db43-455f-b44e-bca6ff3f5f7f" class="image"><a href="Git%20Github/Untitled%2027.png"><img style="width:542px" src="Git%20Github/Untitled%2027.png"/></a></figure><p id="b011e855-f18b-4b69-8d3e-b7ce2eccfdb6" class="">예전에는 이 부분이 이해가 잘 안갔었는데 이제 알것 같다.</p><p id="65c48024-4db4-468c-ae0a-9b489566fa55" class="">브랜치를 보면 지금까지 했던 작업들을 직관적으로 보여준다.</p><ol id="23fa4afc-b4c3-40a5-930f-94d0b6c6b280" class="numbered-list" start="1"><li>master branch - first commit</li></ol><ol id="2fb117d9-5af7-491f-8ece-95eeb06caefa" class="numbered-list" start="2"><li>test branch — edit <a href="http://a.py">a.py</a> and make b.py<p id="e54f56c1-4c14-4010-8284-b61f0946f800" class="">master branch — edit a.py</p></li></ol><ol id="5e76d3ae-99dd-4387-879c-791bc7022b3f" class="numbered-list" start="3"><li>masterbranch — Merge branch &#x27;test&#x27;</li></ol><p id="ca6513e8-fe56-4a79-af93-681c79a40877" class="">
+</p><h3 id="f9368585-8690-4ff1-8f86-a8b766584967" class="">항상 merge가 잘 될까?</h3><ul id="31ba52b9-4855-474b-a93a-4f7f8b88c231" class="bulleted-list"><li>어떤 경우 merge가 되지 않는지 알아보자</li></ul><h3 id="b398c525-739e-4a9b-87a6-dc47f6d1abbc" class="">test2 브랜치 생성 후 이동 / edit a.py</h3><figure id="aa847f4b-e9b1-433e-b917-7afb09983eb0" class="image"><a href="Git%20Github/Untitled%2028.png"><img style="width:382px" src="Git%20Github/Untitled%2028.png"/></a></figure><figure id="88fc0c9d-e8eb-4c29-a3da-5a32f4990239" class="image"><a href="Git%20Github/Untitled%2029.png"><img style="width:523px" src="Git%20Github/Untitled%2029.png"/></a></figure><h3 id="b8d2f6c3-408b-4933-836e-20663d52f5ed" class="">master 브랜치로 이동/edit a.py</h3><figure id="9db1b476-b90a-42e2-a3c9-b70e1d2f07dd" class="image"><a href="Git%20Github/Untitled%2030.png"><img style="width:229px" src="Git%20Github/Untitled%2030.png"/></a></figure><figure id="58a41193-aae7-43ae-929c-514bbf6b2b17" class="image"><a href="Git%20Github/Untitled%2031.png"><img style="width:540px" src="Git%20Github/Untitled%2031.png"/></a></figure><p id="0c13545b-ff03-49d0-ad86-3025c1fa0b76" class="">⇒ <strong>주의!</strong></p><p id="38c946e7-5600-465b-9040-b1b94cb7e1eb" class="">test2 브랜치와 master 브랜치 모두 <a href="http://a.py">a.py</a> 파일의 2번째 줄을 수정했다.</p><p id="9bb49694-c5fb-4ab6-b266-68854625e69e" class="">생각해보자. 회의록을 작성하는데 나는 두 번째 줄에 &quot;우리 회사의 수익은 10000이다.&quot;라고 작성했는데 나의 동료는 &quot;우리 회사의 수익은 20000이다.&quot;라고 작성을 했다. 이 때 두 파일을 합치면 버전관리가 될까?</p><p id="c9593ed3-42ca-4995-9708-a6c12a2d2fd1" class="">10000이야? 20000이야?!
+<mark class="highlight-red_background">같은 문제가 코드에서 발생하는 것이다. 충돌이 나는 것이다.</mark></p><figure id="6529bbe4-75d0-44c7-98a5-5432756faeec" class="image"><a href="Git%20Github/Untitled%2032.png"><img style="width:592px" src="Git%20Github/Untitled%2032.png"/></a></figure><blockquote id="da633989-d121-49e1-b141-102d97e3de8b" class="">CONFLICT (content): Merge conflict in a.py</blockquote><p id="8175eeb2-4593-4af9-b418-34da50157bd1" class="">
+</p><p id="87843429-90a5-48a6-a8af-bdd90005d70e" class=""><mark class="highlight-teal_background">⇒ 다시 a.py에 들어가서 충돌이 일어난 부분을 수정해야 한다.</mark></p><figure id="5adb2256-a176-476e-9439-5e812daa8528" class="image"><a href="Git%20Github/Untitled%2033.png"><img style="width:656px" src="Git%20Github/Untitled%2033.png"/></a></figure><p id="5842ef97-b0cf-49e8-a642-5c7dc97664b4" class="">⇒ 충돌이 난 부분을 수정해주면 병합을 할 수 있게 된다. </p><figure id="c536408a-845e-4e9d-840c-1e32a57dc161" class="image"><a href="Git%20Github/Untitled%2034.png"><img style="width:392px" src="Git%20Github/Untitled%2034.png"/></a></figure><figure id="ed5b27c2-0d9f-45e8-b713-60f87613963b" class="image"><a href="Git%20Github/Untitled%2035.png"><img style="width:590px" src="Git%20Github/Untitled%2035.png"/></a></figure><p id="98a9b311-1b89-4287-9c56-9e547deb404d" class="">
+</p><h2 id="cb6b2c77-db86-427a-be71-e913143db138" class="">#4. 유용한 팁</h2><h3 id="077501cb-3d98-496f-9aba-437cae2fbfc3" class="">1. 원격저장소와 연결</h3><ul id="3d8782f9-d9f5-47b3-9308-ecbd246b3623" class="bulleted-list"><li>원격저장소를 관리할 수 있는 명령어 git remote를 이용하여 연결</li></ul><ul id="ae4cef03-6016-44fe-b813-5fe53db595e6" class="bulleted-list"><li>git remote add origin 사용자명@호스트:/원격/저장소/경로</li></ul><p id="56e883db-a3bf-4464-99ae-c55accc664b9" class="">(git clone 사용자명@호스트:/원격/저장소/경로)</p><p id="f7592554-f97d-4f2c-bf2e-cbff53076c26" class="">
+</p><h3 id="bd1f69bc-a7c4-46b6-aeee-46f5e2203f6b" class="">2. 원격 저장소에서 로컬 저장소로 업데이트하는 방법</h3><h3 id="4f4732cb-5797-45ad-a37a-95643c555dda" class="">원격 저장소 → 로컬 저장소 pull(fetch &amp; merge)</h3><ul id="294915ca-a450-4809-8ed0-c3ba0bad90a1" class="bulleted-list"><li>원격 저장소의 내용을 로컬 저장소로 업데이트<mark class="highlight-teal_background">(다른 사람이 수정한 것을 받기 위해)</mark></li></ul><ul id="3143e8ae-ca29-4e25-a255-85d5966475b7" class="bulleted-list"><li>git pull origin master(브랜치명) 실행</li></ul><ul id="3ab96daa-8f56-4950-8685-3e2b0243accc" class="bulleted-list"><li><mark class="highlight-orange_background">origin의 내용이 master로 반영(fetch)되고 브랜치를 병합(merge)</mark></li></ul><p id="c23cfbe4-2230-4ddc-81e1-ceba3ee564ef" class="">
+</p><h3 id="9d97827f-40e5-4c3b-8e8e-310590888279" class="">3. git configuration</h3><ul id="404b46da-2ab5-4971-812c-37c5c9a076e7" class="bulleted-list"><li>git pull을 할 때는 깃허브의 유저이름과 비밀번호를 쳐야 하는 경우가 많다. </li></ul><ul id="3ef24804-f944-46dd-b22d-7ed140a7c5ac" class="bulleted-list"><li>매번 비밀번호를 입력하기 싫다면 <ul id="0edeecb2-b7ff-44d8-befd-def66020ca11" class="bulleted-list"><li>git config —global credmential.helper &#x27;store —file 경로&#x27;하면 해당 경로에 비밀번호가 저장된 파일이 생성된다.</li></ul><ul id="c40d7cca-2257-4fc2-9c4e-83eea70fdecb" class="bulleted-list"><li>단, 파일로 저장되는 만큼 보안에 취약하기 때문에 주의해야 한다.</li></ul></li></ul><p id="303185ef-37be-43a8-be50-b1287e9eefcb" class="">
+</p><h3 id="4c877b67-32b9-4a7d-b993-699b3043c202" class="">4. 많이 쓰이는 패턴</h3><h3 id="b97f5416-e89d-48b0-b55b-273bacc35adf" class="">많이 쓰이는 패턴</h3><figure id="f9023abb-98bd-40ae-8f17-8d1126ca1ed3" class="image"><a href="Git%20Github/Untitled%2036.png"><img style="width:686px" src="Git%20Github/Untitled%2036.png"/></a></figure><p id="d0cb014e-6bde-4065-a0fd-23826daaff7c" class="">타인의 원격 저장소를 복사해 온다든지</p><p id="ad9ac226-1ca3-4127-b291-e3c6751652fc" class="">원격 저장소의 내용을 로컬로 복사해온다든지</p><p id="3181810d-677c-4cb8-b855-f237640cf53b" class="">브랜치를 생성후 작업을 한다든지</p><p id="f6918221-fcc4-4314-a5bf-74ee7eaac243" class="">원격 저장소의 관리자가 변경 내역을 확인 후  merge여부를 결정한다든지!</p><p id="3eccb2a9-220b-422f-8ba6-f212a00b88d0" class="">
+</p><h2 id="8c03e82e-10a7-4925-bb52-8a99ed1023d5" class="">#8. Reference</h2><ul id="145d9a39-9bb5-491a-a9ef-4b36ae25e8e5" class="bulleted-list"><li>투빅스 11기 정규세션 - 정윤호의 Git&amp;GitHub</li></ul><p id="ce886ff6-f39c-4f58-9789-53503da12516" class="">
+</p></div></article></body></html>
