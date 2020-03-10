@@ -46,7 +46,6 @@ Refence: http://bitly.kr/UuYZi6eX<br/>
 내가 쓰는 코드가 지루하다면 금방 관심밖으로 밀려날수도 있으니...
 
 ---
-# Book List
 ## 5th. Deep-Learning-from-scratch-2
 **저자 : 사이토 고키 || 출판사 : 한빛미디어**<br/>
 <br/>
