@@ -40,14 +40,14 @@ class Sigmoid:
 # 2차원일 때와 1차원일 때 각각 구하는 방법이 다름에 주의하자
 def softmax(x):
     if x.ndim == 2:  # 2차원일 경우
-        x = x - x.max(axis=1, keepdim=True)
+        x = x - x.max(axis=1, keepdims=True)
         x = np.exp(x)
-        x /= x.sum(axis=1, keepdim=True)
+        x /= x.sum(axis=1, keepdims=True)
 
     elif x.ndim == 1:
         x = x - x.max(x)
         x = np.exp(x)
-        x = x / x.sum(axis=1, keepdim=True)
+        x = x / x.sum(axis=1, keepdims=True)
     return x
 
 # Cross-Entropy 함수 정의
@@ -62,7 +62,7 @@ def cross_entropy_error(y, t):
 
     batch_size = y.shape[0]
 
-    return -np.sum(np.log(y[np.arrange(batch_size), t] + 1e-7)) / batch_size  # y[np.arrage(batch_size), t]: 각 데이터의 정답 레이블에 대한
+    return -np.sum(np.log(y[np.arange(batch_size), t] + 1e-7)) / batch_size  # y[np.arrage(batch_size), t]: 각 데이터의 정답 레이블에 대한
                                                          # 신경망의 출력값을 출력
 
 # Softmax 계층과 Softmax with Loss 계층 구현하기
@@ -99,6 +99,15 @@ class SoftmaxWithLoss:
 
         loss = cross_entropy_error(self.y, self.t)
         return loss
+
+    def backward(self, dout=1):
+         batch_size = self.t.shape[0]
+         dx = self.y.copy()
+         dx[np.arange(batch_size), self.t] -= 1
+         dx *= dout
+         dx = dx / batch_size
+
+         return dx
 
 
 
