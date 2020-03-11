@@ -38,7 +38,7 @@ class Sigmoid:
 
 # Softmax 함수 정의
 # 2차원일 때와 1차원일 때 각각 구하는 방법이 다름에 주의하자
-def Softmax:
+def softmax(x):
     if x.ndim == 2:  # 2차원일 경우
         x = x - x.max(axis=1, keepdim=True)
         x = np.exp(x)
@@ -73,7 +73,7 @@ class Softmax:
         self.out = None
 
     def forward(self, x):
-        self.out = Softmax(x)
+        self.out = softmax(x)
         return self.out
 
     def backward(self, dout):  # Q1. backward는 어떻게 해서 이와 같이 구할 수 있는건가?
