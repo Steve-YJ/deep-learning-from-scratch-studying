@@ -25,11 +25,12 @@ class Sigmoid:
     def __init__(self):  # Sigmoid 함수의 경우 학습해야 할 파라미터가 따로 없다.
         self.params, self.grads = [], []
         self.out = None
-        self.x = None
+        # self.x = None
 
     def forward(self, x):
-        self.x = x
+        # self.x = x
         out = 1 / (1 + np.exp(-x))
+        self.out = out
         return out
 
     def backward(self, dout):
