@@ -1,6 +1,8 @@
-# test VScode Edittor
+# test VS python path
 
-print('hello world')
-for i in range(3+1):
-    print(i)
-    
+import os
+print('current directory')
+print(os.getcwd())
+
+print(1*2)
+print(2**3)
