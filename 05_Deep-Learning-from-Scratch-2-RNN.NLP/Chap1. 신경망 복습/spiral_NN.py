@@ -17,7 +17,7 @@ for path in sys.path:
 print(len(sys.path))
 '''
 print('sys.path:', sys.path)
-# from dataset import spiral
+from dataset import spiral
 # import dataset.spiral as spiral
 # from matplotlib.pyplot import plt
 from matplotlib import pyplot as plt

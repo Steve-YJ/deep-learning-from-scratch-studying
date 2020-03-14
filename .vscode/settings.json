@@ -1,23 +1,27 @@
 {
+    // "python.pythonPath": "C:\\Users\\Lee\\Anaconda3\\python.exe",
+    // // "python.pythonPath": "C:\\Users\\Lee\\Anaconda3\\envs\\base\\python.exe",
+    // "python.testing.unittestArgs": [
+    //     "-v",
+    //     "-s",
+    //     "./05_Deep-Learning-from-Scratch-2-RNN.NLP",
+    //     "-p",
+    //     "*test*.py"
+    // ],
+    // "python.testing.pytestEnabled": false,
+    // "python.testing.nosetestsEnabled": false,
+    // "python.testing.unittestEnabled": false,
+    // "python.dataScience.jupyterServerURI": "local",
+    // "python.venvPath": "C:\\Users\\Lee\\Anaconda3\\envs",
+    // "terminal.integrated.shellArgs.windows": [
+    // "/K",
+    // "C:\\Users\\Lee\\Anaconda3\\Scripts\\activate.bat C:\\Users\\Lee\\Anaconda3%windir%\\System32\\cmd.exe "
+    // ],
+    // "python.testing.promptToConfigure": false,
+    "python.envFile": "${workspaceFolder}/.env",
     "python.pythonPath": "C:\\Users\\Lee\\Anaconda3\\python.exe",
-    // "python.pythonPath": "C:\\Users\\Lee\\Anaconda3\\envs\\base\\python.exe",
-    "python.testing.unittestArgs": [
-        "-v",
-        "-s",
-        "./05_Deep-Learning-from-Scratch-2-RNN.NLP",
-        "-p",
-        "*test*.py"
-    ],
-    "python.testing.pytestEnabled": false,
-    "python.testing.nosetestsEnabled": false,
-    "python.testing.unittestEnabled": false,
-    "python.dataScience.jupyterServerURI": "local",
-    "python.venvPath": "C:\\Users\\Lee\\Anaconda3\\envs",
-    "terminal.integrated.shellArgs.windows": [
-    "/K",
-    "C:\\Users\\Lee\\Anaconda3\\Scripts\\activate.bat C:\\Users\\Lee\\Anaconda3%windir%\\System32\\cmd.exe "
-    ],
-    "python.testing.promptToConfigure": false,
-    "python.envFile": "${workspaceFolder}/.env" 
-    
+    // "terminal.integrated.shellArgs.windows":[
+    //     "/K",
+    //     "C:\\Users\\Lee\\Anaconda3\\Scripts\\activate.bat C:\\Users\\Lee\\Anaconda3%windir%\\System32\\cmd.exe"
+    // ] 
 }
