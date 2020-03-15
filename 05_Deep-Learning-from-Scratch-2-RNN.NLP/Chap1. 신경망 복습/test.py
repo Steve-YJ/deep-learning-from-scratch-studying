@@ -18,3 +18,13 @@ b = np.array([5, 6, 7, 8])
 # print(a.shape)
 # print(b.shape)
 print(a+b)
+
+
+import sys
+sys.path.append('..')
+# import spiral as spiral
+from dataset import spiral
+
+x, t = spiral.load_data()
+print(x.shape)
+print(t.shape)
