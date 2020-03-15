@@ -28,3 +28,4 @@ from dataset import spiral
 x, t = spiral.load_data()
 print(x.shape)
 print(t.shape)
+print("Error Handled!")

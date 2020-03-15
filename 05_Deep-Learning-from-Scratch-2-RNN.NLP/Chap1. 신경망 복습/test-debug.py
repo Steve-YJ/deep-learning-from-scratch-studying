@@ -6,3 +6,4 @@ d = (a+b)*c
 
 print(c)
 print(d)
+print("Error Handled!")
