@@ -22,4 +22,4 @@ x, t = spiral.load_data()
 print('x.shape: ', x.shape)
 print('t.shape: ', t.shape)
 
-print('hello world')
+print('hello world') 
