@@ -26,7 +26,7 @@
             "program": "${file}",
             "console": "integratedTerminal",
             // "cwd": "${workspaceRoot}",  // original
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}\\05_Deep-Learning-from-Scratch-2-RNN.NLP\\Chap1. 신경망 복습",
             "env": {"PYTHONPATH": "${workspaceRoot}"}
             
         }
