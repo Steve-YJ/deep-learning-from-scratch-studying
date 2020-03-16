@@ -19,7 +19,7 @@
     // ],
     // "python.testing.promptToConfigure": false,
     "python.envFile": "${workspaceFolder}/.env",
-    "python.pythonPath": "C:\\Users\\Lee\\Anaconda3\\python.exe",
+    "python.pythonPath": "C:\\Users\\stevelee\\Anaconda3\\python.exe",
     // "terminal.integrated.shellArgs.windows":[
     //     "/K",
     //     "C:\\Users\\Lee\\Anaconda3\\Scripts\\activate.bat C:\\Users\\Lee\\Anaconda3%windir%\\System32\\cmd.exe"
