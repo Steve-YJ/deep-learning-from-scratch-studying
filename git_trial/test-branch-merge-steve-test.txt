@@ -1,0 +1,12 @@
+1. git clone https://github.com/Steve-YJ/deep-learning-from-scratch-studying.git
+2. make text file 'test-branch-merge-steve-test
+3. git add * git commit -m ":bookmark: Reviewing remote1-origin master"
+3-1. git push origin master
+
+=======test-branch-merge=======
+4. git checkout -b "steve-test"
+5. git add *, git commit -m "bookmark: Reviewing remote2-origin branch"
+6. git push origin branchname
+=====this line added====
+Editted Line
+=====edit upper line=====
