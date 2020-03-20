@@ -31,7 +31,7 @@ from the bottom to Gaxlxy.
 ---
 ## 3rd. PyTorch.kr
 **PyTorch로 60분 만에 딥러닝 끝내기**<br/>
-Refence: http://bitly.kr/UuYZi6eX<br/>
+Refence: https://tutorials.pytorch.kr/beginner/deep_learning_60min_blitz.html<br/>
 <br/>
 🤔 과연 60분 만에 PyTorch로 딥러닝을 끝낼 수 있을까?!
 'PyTorch를 활용한 머신러닝, 딥러닝 철저입문(위키북스)'를 통해 PyTorch를 공부하다보면 클래스, 모듈에 대한 설명이 조금 부족한 느낌을 받을 수 있을 것이다.<br/>
