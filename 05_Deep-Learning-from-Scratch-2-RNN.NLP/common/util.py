@@ -6,28 +6,124 @@ import numpy as np
 # 01. preprocess()
 # corpus 전처리 함수
 def preprocess(text):
-    return
+    '''
+    전처리 함수
+    : 텍스트를 입력받아 형태소 추출(단어의 의미 최소단위 추출)
+    :word_to_id: word를 키(key) 값으로 받고 id를 값으로 가지는 딕셔너리 
+    :id_to_word: id를 키 값으로 받고 word를 값으로 가지는 딕셔너리
+    :corpus: text 전체 word id에 대한 numpy array
+    '''
+    text = text.lower()
+    text = text.replace('.', ' .')
+    words = text.split(' ')
+
+    word_to_id = {}  # dictionary type
+    id_to_word = {}
+    for word in words:
+        if word not in word_to_id:
+            new_id = len(word_to_id)  # 새로운 단어의 경우, dic에 새로운번호로 추가되겠죠?
+            word_to_id[word] = new_id
+            id_to_word[new_id] = word
+
+    corpus = np.array([word_to_id[w] for w in words])
+    return corpus, word_to_id, id_to_word
 
 # 02. create_co_matrix()
 # 동시 발생 행렬(co-occurence matrix)생성
-def create_co_matrix():
-    return
+def create_co_matrix(corpus, vocab_size, window_size=1):
+    '''동시 발생 행렬(co-occurence matrix)생성
+    :params corpus: 말뭉치(단어 ID 목록)
+    :params vocab_size: 어휘 수
+    :params window_size: 맥락의 크기, 윈도우 사이즈가 1이면 타깃 단어 좌.우 한 단어씩이 맥락에 포함
+    '''
+    corpus_size = len(corpus)
+    co_matrix = np.zeros_like((vocab_size,vocab_size), dtype=np.int32)
+
+    for idx, word_id in enumerate(corpus):
+        for i in range(1, window_size+1):
+            left_idx = idx - i  # idx의 시작은 0
+            right_idx = idx + i
+
+            if left_idx >= 0:
+                left_word_id = corpus[left_idx]
+                co_matrix[word_id, left_word_id] += 1
+            if right_idx < corpus_size[right_idx]
+                right_word_id = corpus[right_idx]
+                co_matrix[word_id, right_word_id] +=1
+    
+    return co_matrix
 
 
 # 03. cos_similarity()
 # 코사인 유사도 함수 생성
 # 두 벡터가 가리키는 방향이 얼마나 같은지 알려주는 함수
 def cos_similarity():
-    return
-
+    '''코사인 유사도 산출
+    :params x: 벡터
+    :params y: 벡터
+    :params eps: '0으로 나누기'를 방지하기 위한 작은 값
+    :return:
+    '''
+    nx = x / np.sqrt(np.sum(x**2))
+    ny = y / np.sqrt(np.sum(y**2))
+    return np.dot(nx, ny)
 
 # 04. most_similar()
 # 유사 단어 검색
-def most_similar():
-    return
+def most_similar(query, word_to_id, id_to_word, word_matrix, top=5)):
+    '''유사 단어 검색
+    :params query:
+    :params word_to_id:
+    :params id_to_word:
+    :params word_matrix:
+    :params top: 
+    '''
+    if query not in word_to_id:
+        print('%s(을)를 찾을 수 없습니다.' % query)
+        return
+    print('\n[query]: ' + query)
+    query_id = word_to_id[query]
+    query_vec = word_matrix[query_id]
+
+    # 코사인 유사도 계산
+    vocab_size = len(id_to_word)
+
+    similarity = np.zeros(vocab_size)
+    for i in range(vocab_size):
+        similarity[i] = cos_similarity(word_matrix[i], query_vec)
+
+    # 코사인 유사도를 기준으로 내림차순으로 정렬
+    count = 0
+    for i in (-1 * similarity).argsort():
+        if id_to_word[i] == query:
+            continue
+        print('%s: %s' % (id_to_word[i], similarity[i]))
+
+        count +=1
+        if count >= top:
+            return
 
 # 05. ppmi()
 # ppmi 점별 상호정보량 생성
-def ppmi(C, verbose=Fale, eps=1e-8):
-    return
+def ppmi(C, verbose=False, eps = 1e-8):
+    '''ppmi 점별 상호정보량 생성
+    :params C: 동시 발생 행렬
+    :params verbose: 진행 상황 출력 여부 결정
+    :return
+    '''
+    M = np.zeros_like(C, dtype=np.float32)
+    N = np.sum(C)
+    S = np.sum(C, axis=0)
+    total = C.shape[0] * C.shape[1]
+    cnt = 0
 
+    for i in range(C.shape[0]):
+        for j in range(C.shape[1]):
+            pmi = np.log2(C[i, j]*N / (S[j]*S[i]) + eps)
+            M[i, j] = max(0, pmi)
+
+            if verbose:
+                cnt += 1
+                if cnt % (total//100) ==0:
+                    print('%.f%%완료' % (100*cnt/total))
+    return M
