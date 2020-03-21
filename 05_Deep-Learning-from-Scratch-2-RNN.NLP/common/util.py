@@ -58,15 +58,15 @@ def create_co_matrix(corpus, vocab_size, window_size=1):
 # 03. cos_similarity()
 # 코사인 유사도 함수 생성
 # 두 벡터가 가리키는 방향이 얼마나 같은지 알려주는 함수
-def cos_similarity():
+def cos_similarity(x, y, eps=1e-8):
     '''코사인 유사도 산출
     :params x: 벡터
     :params y: 벡터
     :params eps: '0으로 나누기'를 방지하기 위한 작은 값
     :return:
     '''
-    nx = x / np.sqrt(np.sum(x**2))
-    ny = y / np.sqrt(np.sum(y**2))
+    nx = x / (np.sqrt(np.sum(x**2)) + eps)
+    ny = y / (np.sqrt(np.sum(y**2)) + eps) 
     return np.dot(nx, ny)
 
 # 04. most_similar()
