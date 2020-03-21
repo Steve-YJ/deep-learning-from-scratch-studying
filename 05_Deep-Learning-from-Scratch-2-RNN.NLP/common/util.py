@@ -28,6 +28,44 @@ def preprocess(text):
     corpus = np.array([word_to_id[w] for w in words])
     return corpus, word_to_id, id_to_word
 
+
+# 01-2. preprocess_mini()
+def preprocess_mini(text):
+    '''
+    전처리 함수
+    : 텍스트를 입력받아 형태소 추출(단어의 의미 최소단위 추출)
+    :word_to_id: word를 키(key) 값으로 받고 id를 값으로 가지는 딕셔너리 
+    :id_to_word: id를 키 값으로 받고 word를 값으로 가지는 딕셔너리
+    :corpus: text 전체 word id에 대한 numpy array
+    '''
+    '''
+    ++ 텍스트 파일에서 데이터를 문장 단위로 읽어오기 때문에 문장 단위의 전처리가 필요하다.
+    '''
+    # <To-do> 기존 통짜 텍스트에서 한 줄 한 줄 전처리를 할 수 있는 코드 구현하기! -20.03.22.sun am2:33-
+    
+    # 변수 생성
+    word_to_id = {}  # dictionary type
+    id_to_word = {}
+    lines = []
+    corpora = []  # 이거 참 어렵군요...하하!
+
+    for line in text:
+        line.replace('.', ' .')
+        line = line.split(' ')
+        
+
+        for word in line:
+            if word not in word_to_id:
+                new_id = len(word_to_id)  # 새로운 단어의 경우, dic에 새로운번호로 추가되겠죠?
+                word_to_id[word] = new_id
+                id_to_word[new_id] = word
+
+        # corpus = np.array([word_to_id[w] for w in line])  # 여기서는 루프를 다 돌고 나서 마지막에 word_to_id에서 바로 copurs를 생성해야할까?
+    
+    corpus = np.array([word_to_id[w]  for w in ])
+        return corpus, word_to_id, id_to_word
+
+
 # 02. create_co_matrix()
 # 동시 발생 행렬(co-occurence matrix)생성
 def create_co_matrix(corpus, vocab_size, window_size=1):
