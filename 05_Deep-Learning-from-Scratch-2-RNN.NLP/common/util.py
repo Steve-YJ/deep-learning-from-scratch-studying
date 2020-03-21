@@ -47,7 +47,8 @@ def create_co_matrix(corpus, vocab_size, window_size=1):
             if left_idx >= 0:
                 left_word_id = corpus[left_idx]
                 co_matrix[word_id, left_word_id] += 1
-            if right_idx < corpus_size[right_idx]
+                
+            if right_idx < corpus_size[right_idx]:
                 right_word_id = corpus[right_idx]
                 co_matrix[word_id, right_word_id] +=1
     
@@ -70,7 +71,7 @@ def cos_similarity():
 
 # 04. most_similar()
 # 유사 단어 검색
-def most_similar(query, word_to_id, id_to_word, word_matrix, top=5)):
+def most_similar(query, word_to_id, id_to_word, word_matrix, top=5):
     '''유사 단어 검색
     :params query:
     :params word_to_id:
@@ -102,8 +103,6 @@ def most_similar(query, word_to_id, id_to_word, word_matrix, top=5)):
         count +=1
         if count >= top:
             return
-
-<<<<<<< HEAD
 
 def convert_one_hot(corpus, vocab_size):
     '''원핫 표현으로 변환
@@ -171,14 +170,14 @@ def ppmi(C, verbose=False, eps = 1e-8):
 
     for i in range(C.shape[0]):
         for j in range(C.shape[1]):
-            pmi = np.log2(C[i, j]*N / (S[j]S[i] + eps)  # PMI: Pointwise Mutual Information
+            pmi = np.log2(C[i, j]*N / (S[j]*S[i]) + eps) # PMI: Pointwise Mutual Information
             M[i, j] = max(0, pmi)
 
             if verbose:
                 cnt += 1
                 if cnt % (total//100) == 0:
                     print('%.1f%%완료' % (100*cnt/total))
-
+    return M
 
 def create_contexts_target(corpus, window_size=1):
     '''맥락과 타깃 생성
