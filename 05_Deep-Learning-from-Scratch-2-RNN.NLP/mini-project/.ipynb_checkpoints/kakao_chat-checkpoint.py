@@ -16,42 +16,30 @@ from common.util import preprocess_mini, create_co_matrix, ppmi, most_similar
 # with open(r"C:\Users\Lee\Documents\steve-home\05_Deep-Learning-from-Scratch-2-RNN.NLP\dataset\kakao_chat.txt", "r", encoding='utf-8') as f:
 #     np.append(text, f.readline())
 
-word_to_id = {}  # dictionary type
-id_to_word = {}
-corpora = np.array([1, 2, 3])
-corpora = corpora.reshape(1, -1)
 with open(r"C:\Users\Lee\Documents\steve-home\05_Deep-Learning-from-Scratch-2-RNN.NLP\dataset\kakao_chat.txt", "r", encoding='utf-8') as f:
-    lines = f.readlines()
-    for line in lines:
-        text = line
-        text = text.lower()
-        text = text.replace('.', ' .')
-        words = text.split(' ')  # words: data type is list
-        words = words[2:]
+    line = f.readline()
+    text = line
+    corpus, word_to_id, id_to_word = preprocess_mini(text)
+    
+    
 
-        for word in words:
-            if word not in word_to_id:
-                new_id = len(word_to_id)  # 새로운 단어의 경우, dic에 새로운번호로 추가되겠죠? 
-                                        # 새로운 단어는 새로운 인덱스번호로 dic에 추가된다.
-                word_to_id[word] = new_id
-                id_to_word[new_id] = word
+with open(r"C:\Users\Lee\Documents\steve)
 
-        corpus = np.array([word_to_id[w] for w in words])
-        corpus = corpus.reshape(1, -1)
-        np.append(corpora, corpus, axis=1)
-'''
-지금 line을 하나밖에 읽지 않았구나...
-loop를 돌려 전체 텍스트를 읽어와야지...!
-'''
-print(word_to_id)
-print(id_to_word)
-print(corpora)    
+for line in text:
+    line.reshape(1, len())
+
+corpus, word_to_id, id_to_word = preprocess_mini(text)
+print(corpus)
+print(len(word_to_id))
+
+
 window_size = 2
 wordvec_size = 100
 
+corpus, word_to_id, id_to_word = ptb.load_data('train')
 vocab_size = len(word_to_id)
 print('동시발생 수 계산 ...')
-C = create_co_matrix(corpora, vocab_size, window_size)
+C = create_co_matrix(corpus, vocab_size, window_size)
 print('PPMI 계산 ...')
 W = ppmi(C, verbose=True)
 
@@ -67,6 +55,6 @@ except ImportError:
 
 word_vecs = U[:, :wordvec_size]
 
-querys = ['아기', '공주', '영둥', '빵둥']
+querys = ['you', 'year', 'car', 'toyota']
 for query in querys:
     most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
