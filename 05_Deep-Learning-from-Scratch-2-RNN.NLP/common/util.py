@@ -41,8 +41,9 @@ def preprocess_mini(text):
     '''
     ++ 텍스트 파일에서 데이터를 문장 단위로 읽어오기 때문에 문장 단위의 전처리가 필요하다.
     '''
-    # <To-do> 기존 통짜 텍스트에서 한 줄 한 줄 전처리를 할 수 있는 코드 구현하기! -20.03.22.sun am2:33-
     
+    '''
+    # <To-do> 기존 통짜 텍스트에서 한 줄 한 줄 전처리를 할 수 있는 코드 구현하기! -20.03.22.sun am2:33-
     # 변수 생성
     word_to_id = {}  # dictionary type
     id_to_word = {}
@@ -64,7 +65,27 @@ def preprocess_mini(text):
     
     corpus = np.array([word_to_id[w]  for w in ])
         return corpus, word_to_id, id_to_word
+    '''
+    text = text.lower()
+    text = text.replace('.', ' .')
+    words = text.split(' ')  # words: data type is list
+    words = words[2:]
+    return words
 
+    # word_to_id = {}  # dictionary type
+    # id_to_word = {}
+    '''
+    for word in words:
+        if word not in word_to_id:
+            new_id = len(word_to_id)  # 새로운 단어의 경우, dic에 새로운번호로 추가되겠죠?
+            word_to_id[word] = new_id
+            id_to_word[new_id] = word
+
+    corpus = np.array([word_to_id[w] for w in words])
+    return corpus, word_to_id, id_to_word
+    '''
+    
+    
 
 # 02. create_co_matrix()
 # 동시 발생 행렬(co-occurence matrix)생성
@@ -194,7 +215,7 @@ def create_co_matrix(corpus, vocab_size, window_size=1):
 
 # 05. ppmi()
 # ppmi 점별 상호정보량 생성
-def ppmi(C, verbose=False, eps = 1e-8):
+def ppmi(C, verbose=False, eps=1e-8):
     '''ppmi 점별 상호정보량 생성
     :params C: 동시 발생 행렬
     :params verbose: 진행 상황 출력 여부 결정

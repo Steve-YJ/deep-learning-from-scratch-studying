@@ -13,13 +13,8 @@ from common.util import preprocess, create_co_matrix, ppmi, most_similar
 
 text = 'I love seongnam-city in Korea.'
 text = text.lower()
-text = text.replace('.', ' .')
-text = text.split(' ')
+text = text.replace('.'. ' .')
+text = text.split('.')
 
-print('text: ', text)
-print('type(text): ', type(text))  # python split(): split a string into a list    
-print('indexing-from 2 to all: ', text[2:])
-
-corpora = np.array([1, 2, 3])
-corpora = corpora.reshape(1, -1)
-print('corpora.shape: ', corpora.shape)
+print('text: '.text)
+print('type(text): ', type(text))
