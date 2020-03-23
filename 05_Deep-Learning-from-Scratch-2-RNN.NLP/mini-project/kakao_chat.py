@@ -18,9 +18,9 @@ from common.util import preprocess_mini, create_co_matrix, ppmi, most_similar
 
 word_to_id = {}  # dictionary type
 id_to_word = {}
-corpora = np.array([1, 2, 3])
-corpora = corpora.reshape(1, -1)
-with open(r"C:\Users\Lee\Documents\steve-home\05_Deep-Learning-from-Scratch-2-RNN.NLP\dataset\kakao_chat.txt", "r", encoding='utf-8') as f:
+# corpora = np.array([1, 2, 3])
+# corpora = corpora.reshape(1, -1)
+with open(r"C:\Users\stevelee\Documents\deep-learning-from-scratch-studying\05_Deep-Learning-from-Scratch-2-RNN.NLP\dataset\kakao_chat.txt", "r", encoding='utf-8') as f:
     lines = f.readlines()
     for line in lines:
         text = line
@@ -36,29 +36,41 @@ with open(r"C:\Users\Lee\Documents\steve-home\05_Deep-Learning-from-Scratch-2-RN
                 word_to_id[word] = new_id
                 id_to_word[new_id] = word
 
-        corpus = np.array([word_to_id[w] for w in words])
-        corpus = corpus.reshape(1, -1)
-        np.append(corpora, corpus, axis=1)
+        # corpus = np.array([word_to_id[w] for w in words])
+        # corpus = corpus.reshape(1, -1)
+        # np.append(corpora, corpus, axis=1)
+
+    # corpus = np.array([word_to_id[w] for w in word_to_id])
+corpus = np.array([word_to_id[w] for w in word_to_id])
+
 '''
 지금 line을 하나밖에 읽지 않았구나...
 loop를 돌려 전체 텍스트를 읽어와야지...!
 '''
-print(word_to_id)
-print(id_to_word)
-print(corpora)    
+# print(word_to_id)
+# print(id_to_word)
+print('corpus: ', corpus)  
+# print('word_to_id: ', word_to_id)
+# print('id_to_word: ', id_to_word)
+
 window_size = 2
 wordvec_size = 100
 
 vocab_size = len(word_to_id)
 print('동시발생 수 계산 ...')
-C = create_co_matrix(corpora, vocab_size, window_size)
+C = create_co_matrix(corpus, vocab_size, window_size)
+print('동시 발생 행렬: ', C)
+
+
 print('PPMI 계산 ...')
 W = ppmi(C, verbose=True)
+print('PPMI: ', W)
+# >>> PPMI까지 제대로 출력되는 것을 확인. 그렇다면 뒤에서 문제가 발생한다는 의미인데... -20.03.23.mon-
 
 print('SVD 계산 ...')
 try:
     # truncated SVD(빠르다!)
-    from sklearn.utis.extmath import randomized_svd
+    from sklearn.utils.extmath import randomized_svd
     U, S, V = randomized_svd(W, n_components=wordvec_size, n_iter=5, random_state=None)
 
 except ImportError:
@@ -68,5 +80,15 @@ except ImportError:
 word_vecs = U[:, :wordvec_size]
 
 querys = ['아기', '공주', '영둥', '빵둥']
+for query in querys:
+    most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
+
+
+querys = ['아기공주', '영둥이', '뽕아기', '예뽕아기']
+for query in querys:
+    most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
+
+
+querys = ['아기둥이', '이영둥', '뽕아기', '예뽕아기']
 for query in querys:
     most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
