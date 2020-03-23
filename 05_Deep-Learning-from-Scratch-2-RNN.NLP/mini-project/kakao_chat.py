@@ -92,3 +92,4 @@ for query in querys:
 querys = ['아기둥이', '이영둥', '뽕아기', '예뽕아기']
 for query in querys:
     most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
+    
