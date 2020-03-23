@@ -79,6 +79,7 @@ except ImportError:
 
 word_vecs = U[:, :wordvec_size]
 
+'''
 querys = ['아기', '공주', '영둥', '빵둥']
 for query in querys:
     most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
@@ -92,4 +93,12 @@ for query in querys:
 querys = ['아기둥이', '이영둥', '뽕아기', '예뽕아기']
 for query in querys:
     most_similar(query, word_to_id, id_to_word, word_vecs, top=5)
-    
+'''
+
+# 학습 결과를 저장해서 파일로??? 아니 피클로 저장해두자!!  -20.03.23 mon pm 1:18-
+# SVD 계산 값을 저장해 놓은다면 word_vec을 통해 바로바로 사용할 수 있을텐데!
+# 이번 미니 프로젝트는 작은 성취가 있었지만 아쉬움이 조금 남는다...!
+
+querys = ['예뽕', '예뽕아기', '이영둥','아기둥이', '둥스', '왕자', '잡채', '오빠는', '아기는', '행복해요', '좋아요', '사랑해']
+for query in querys:
+    most_similar(query, word_to_id, id_to_word, word_vecs, top=10)
