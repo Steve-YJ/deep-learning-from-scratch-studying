@@ -238,12 +238,13 @@ def ppmi(C, verbose=False, eps=1e-8):
                     print('%.1f%%완료' % (100*cnt/total))
     return M
 
+'''
 def create_contexts_target(corpus, window_size=1):
-    '''맥락과 타깃 생성
+    ''''''맥락과 타깃 생성
     :param corpus: 말뭉치(단어 ID 목록)
     :param window_size: 윈도우 크기(윈도우 크기가 1이면 타깃 단어 좌우 한 단어씩이 맥락에 포함)
     :return:
-    '''
+    ''''''
     target = corpus[window_size:-window_size]
     contexts = []
 
@@ -256,6 +257,30 @@ def create_contexts_target(corpus, window_size=1):
         contexts.append(cs)
 
     return np.array(contexts), np.array(target)
+'''
+
+def create_contexts_target(corpus, window_size=1):
+    '''word2vec 학습을 위한 맥락과 타겟을 설정
+    :param corpus: 말뭉치(단어 ID목록)
+    :param window_size: 윈도우 크기(윈도우 크기가 1이면 타깃 단어 좌.우 한 단어씩 맥락에 포함)
+    : return: np.array(contexts), np.array(target)  // 맥락과 타겟을 반환함
+    '''
+    target = corpus[window_size: -window_size]
+    contexts = []  # 맥락에 해당하는 리스트
+
+    for idx in range(window_size, len(corpus)-window_size):  # Q. len(corpus)-window_size를 해준 이유가 있을까?
+                                                             # len(corpus)만 해도 타겟의 인덱스 범위가 되는데...
+        cs = [] # cs list 생성
+        for t in range(-window_size, window_size+1):  # -1에서 1까지
+            if t == 0:
+                continue
+            cs.append(corpus[idx+t])
+        contexts.append(cs)
+    
+    return np.array(contexts), np.array(target)
+
+
+
 
 
 def to_cpu(x):
