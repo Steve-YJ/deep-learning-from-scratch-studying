@@ -1,0 +1,697 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Lecture 13 Background Knowledge</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="b987c518-6465-4ed4-a844-e63b8dc0ad79" class="page sans"><header><h1 class="page-title">Lecture 13 Background Knowledge</h1><table class="properties"><tbody><tr class="property-row property-row-person"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesPerson"><path d="M9.625,10.8465 C8.91187,10.2891 8.12088,9.926 7,9.26013 L7,8.71938 C7.21175,8.47612 7.392,8.176 7.53813,7.83213 C7.94587,7.7315 8.3125,7.33425 8.3125,7 C8.3125,6.51788 8.1095,6.32713 7.8715,6.17137 C7.8715,6.15562 7.875,6.14162 7.875,6.125 C7.875,5.41362 7.4375,3.5 5.25,3.5 C3.0625,3.5 2.625,5.4145 2.625,6.125 C2.625,6.14162 2.6285,6.15562 2.6285,6.17137 C2.3905,6.32713 2.1875,6.51788 2.1875,7 C2.1875,7.33425 2.55413,7.7315 2.96187,7.833 C3.108,8.176 3.28825,8.47612 3.5,8.71938 L3.5,9.26013 C2.37912,9.92513 1.58812,10.2882 0.875,10.8465 C0.041125,11.4984 0,12.4688 0,14 L10.5,14 C10.5,12.4688 10.4589,11.4984 9.625,10.8465 Z M13.125,7.3465 C12.4119,6.78912 11.6209,6.426 10.5,5.76013 L10.5,5.21938 C10.7118,4.97613 10.892,4.676 11.0381,4.33213 C11.4459,4.2315 11.8125,3.83425 11.8125,3.5 C11.8125,3.01787 11.6095,2.82713 11.3715,2.67138 C11.3715,2.65562 11.375,2.64162 11.375,2.625 C11.375,1.91363 10.9375,0 8.75,0 C6.5625,0 6.125,1.9145 6.125,2.625 C6.125,2.64162 6.1285,2.65562 6.1285,2.67138 C6.11188,2.68275 6.09787,2.69588 6.08125,2.70725 C7.83212,3.066 8.59688,4.54825 8.72813,5.74787 C8.97575,6.00863 9.1875,6.39625 9.1875,7 C9.1875,7.60288 8.771,8.20312 8.18388,8.51462 C8.127,8.624 8.06662,8.729 8.00275,8.82962 C8.155,8.91537 8.30025,8.99675 8.44025,9.07463 C9.08075,9.4325 9.63375,9.74137 10.164,10.1561 C10.3022,10.2638 10.4204,10.3801 10.5289,10.4991 L14,10.4991 C14,8.96875 13.9589,7.99837 13.125,7.3465 Z"></path></svg></span>Assign</th><td></td></tr><tr class="property-row property-row-select"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesSelect"><path d="M7,13 C10.31348,13 13,10.31371 13,7 C13,3.68629 10.31348,1 7,1 C3.68652,1 1,3.68629 1,7 C1,10.31371 3.68652,13 7,13 Z M3.75098,5.32278 C3.64893,5.19142 3.74268,5 3.90869,5 L10.09131,5 C10.25732,5 10.35107,5.19142 10.24902,5.32278 L7.15771,9.29703 C7.07764,9.39998 6.92236,9.39998 6.84229,9.29703 L3.75098,5.32278 Z"></path></svg></span>Status</th><td><span class="selected-value select-value-color-yellow">In Progress</span></td></tr><tr class="property-row property-row-url"><th><span class="icon property-icon"><svg viewBox="0 0 14 14" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.4);flex-shrink:0;-webkit-backface-visibility:hidden" class="typesUrl"><path d="M3.73333,3.86667 L7.46667,3.86667 C8.49613,3.86667 9.33333,4.70387 9.33333,5.73333 C9.33333,6.7628 8.49613,7.6 7.46667,7.6 L6.53333,7.6 C6.01813,7.6 5.6,8.0186 5.6,8.53333 C5.6,9.04807 6.01813,9.46667 6.53333,9.46667 L7.46667,9.46667 C9.5284,9.46667 11.2,7.79507 11.2,5.73333 C11.2,3.6716 9.5284,2 7.46667,2 L3.73333,2 C1.6716,2 0,3.6716 0,5.73333 C0,7.124 0.762067,8.33453 1.88953,8.97713 C1.87553,8.83107 1.86667,8.6836 1.86667,8.53333 C1.86667,7.92013 1.98753,7.33447 2.2036,6.7978 C1.99267,6.4954 1.86667,6.12953 1.86667,5.73333 C1.86667,4.70387 2.70387,3.86667 3.73333,3.86667 Z M12.1095,5.28907 C12.1231,5.4356 12.1333,5.58307 12.1333,5.73333 C12.1333,6.34607 12.0101,6.9294 11.7931,7.46513 C12.0059,7.768 12.1333,8.13573 12.1333,8.53333 C12.1333,9.5628 11.2961,10.4 10.2667,10.4 L6.53333,10.4 C5.50387,10.4 4.66667,9.5628 4.66667,8.53333 C4.66667,7.50387 5.50387,6.66667 6.53333,6.66667 L7.46667,6.66667 C7.98187,6.66667 8.4,6.24807 8.4,5.73333 C8.4,5.2186 7.98187,4.8 7.46667,4.8 L6.53333,4.8 C4.4716,4.8 2.8,6.4716 2.8,8.53333 C2.8,10.59507 4.4716,12.2667 6.53333,12.2667 L10.2667,12.2667 C12.3284,12.2667 14,10.59507 14,8.53333 C14,7.14267 13.2375,5.93167 12.1095,5.28907 Z"></path></svg></span>url</th><td><a href="https://dnddnjs.github.io/paper/2018/06/19/vae/" class="url-value">https://dnddnjs.github.io/paper/2018/06/19/vae/</a></td></tr></tbody></table></header><div class="page-body"><nav id="06234be5-25b4-4570-bfaa-f8a69d606d3e" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6e5a38cd-47d3-47eb-88ea-1e7b2bbbb3f9">VAE Tutorial 1: cs213n Lecture 13 - Generative Models</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#7ab7f94b-e360-416f-aa68-9d45a389ed86">#01. Supervised Learning &amp; Unsupervised Learning</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#51e22ea2-95cf-4941-80a9-8ede070e008f">VAE의 중요 포인트 네 가지</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#ddb2e6fc-1e18-4c21-b03b-13c98eb480d2">#02. Generative Model</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#1257af8a-e677-476f-8da8-c5aaf168d383">Taxonomy of Generative Models</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b7616c6c-c015-4ada-984a-f63a205b13a5">#03. Variational Auto-Encoder</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#3900295c-38f7-4fd1-b90d-2ee04cc48437">posterioir를 approximate하는 새로운 함수 정의</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4a5a5b69-8b45-4cd0-a724-e77b4c70e093">#4. ELBO(Evidence Lower Bound)</a></div></nav><p id="cb21cfab-be06-47e7-9153-1d1719df9bbe" class="">
+</p><blockquote id="fc89690f-c679-4bee-8fd6-24dff1c7fa4e" class="">내가 가장 좋아하는 당근마켓 product manager 웅원님께서 작성해주신 소중한 글이다.
+cs231n만으로 부족했던 내용들을 채워나가보도록 하자!</blockquote><p id="7ca84256-725d-43d7-8c4b-169d16a55c2e" class="">
+</p><ul id="e29245c6-7714-47d0-9c36-234e1038e02d" class="bulleted-list"><li>VAE Tutorial</li></ul><ul id="b1258c26-3d1a-4b20-a24c-d98fc642a4e8" class="bulleted-list"><li>이름부터 너무 마음에 든다!</li></ul><ul id="42efcb56-c187-4318-a003-33c44112265c" class="bulleted-list"><li>순서는 cs231n 강의 리뷰, VAE 논문 &amp; 코드 리뷰, Sentence VAE, Music VAE이다.<ul id="115f3987-fbd7-4d3f-9ef0-22d7ed25dbc3" class="bulleted-list"><li>VAE Tutorial 목자<ul id="ccdea433-b282-4ab0-9aa9-120944cbf00f" class="bulleted-list"><li>Tutorial 1: cs231n 강의 리뷰</li></ul><ul id="b893f5fb-d51a-4ffc-a18a-e6f31fae6013" class="bulleted-list"><li>Tutorial 2: VAE 논문 및 코드리뷰</li></ul><ul id="d234c14c-508b-43e0-b5f5-ee2e6309e222" class="bulleted-list"><li>Tutorial 3: SentenceVAE</li></ul><ul id="e4fc40ce-7080-4c0b-abdb-7f50307abea5" class="bulleted-list"><li>Tutorial 4: MusicVAE</li></ul></li></ul></li></ul><ul id="0bd3b92d-64d9-4bd8-88a5-a2f826e0f233" class="bulleted-list"><li>Comment</li></ul><p id="cf6d1920-48da-473f-a979-e939b0021309" class="">
+</p><p id="e7a4d1a3-6bae-429a-8009-00deffa39b5a" class="">현업 딥러닝 엔지니어는 cs231n Lecture를 어떻게 공부했을까? 궁금해진다. -20.06.16.tue-</p><p id="d4545a94-bb37-4135-a8ec-bae384760f5b" class="">
+</p><p id="15cf32d6-fbed-4e1b-87f6-6fee9fdc2262" class="">Let&#x27;s get it!</p><p id="68a542ca-173e-494c-b0b5-2a5baa80ffc6" class="">
+</p><hr id="266c1ba8-3e75-4aaf-b938-c8a437c59c7c"/><figure id="ab2af311-9dfb-4c6e-99e0-790f204fc0c9"><a href="https://dnddnjs.github.io/paper/2018/06/19/vae/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">VAE Tutorial 1</div><div class="bookmark-description">cs231n 강의 내용과 Kingma의 논문을 통해 Variational Auto-Encoder를 정리해봅니다. 그리고 그 이후에 sequential data에 VAE를 적용한 사례인 SentenceVAE와 MusicVAE를 다룹니다. 다음과 같이 이 VAE 튜토리얼은 진행합니다. 이 글에서는 1. CS231n 강의 내용을 다룰 것입니다. CS231n lecture 13에서는 여러가지 generative model을 다루는데 그 중에 VAE가 들어있습니다. 13강 이전까지는 supervised learning 문제에 대한 딥러닝을 다뤘습니다.</div></div><div class="bookmark-href"><img src="https://dnddnjs.github.io/favicon.ico" class="icon bookmark-icon"/>https://dnddnjs.github.io/paper/2018/06/19/vae/</div></div><img src="https://dnddnjs.github.io/assets/img/logo.png" class="bookmark-image"/></a></figure><h1 id="6e5a38cd-47d3-47eb-88ea-1e7b2bbbb3f9" class="">VAE Tutorial 1: cs213n Lecture 13 - Generative Models</h1><h2 id="7ab7f94b-e360-416f-aa68-9d45a389ed86" class="">#01. Supervised Learning &amp; Unsupervised Learning</h2><ul id="669395ec-3603-45c7-a97f-8b76de85aede" class="bulleted-list"><li>Supervised Learning의 경우 학습을 위해서는 반드시(항상) label이 있어야함</li></ul><ul id="2c3f1ecb-e1d9-478b-aec5-6520c03d8e37" class="bulleted-list"><li>이는 데이터에 대한 cost가 크다는 것을 의미</li></ul><ul id="8c02b3ba-e5f5-4151-8745-b2895c70272d" class="bulleted-list"><li>딥러닝의 경우 모델의 성능이 데이터의 양과 질에 크게 의존하기 때문에 비용적으로 부담이 큼</li></ul><ul id="db576e75-2e4d-4e25-b9c5-f13aac4f93c0" class="bulleted-list"><li>반면 Unsupervised Learning의 경우 input이 되는 x데이터만으로도 학습이 가능하다</li></ul><ul id="e5fafeb0-7429-4941-b4e2-af2febcd151b" class="bulleted-list"><li>Unsupervised Learning을 통해 Data의 underlying hidden structure를 학습하는 것이 가능하다</li></ul><ul id="8e330a73-0374-46bc-beea-20f1edce97cf" class="bulleted-list"><li>대표적으로 Clustering, dimensionality reduction, feature learning, density estimation등이 가능하다.</li></ul><ul id="e94e8a33-82ec-4650-aa94-d52a54a8aca6" class="bulleted-list"><li>Unsupervised Learning에서는 K-means와 Auto-Encoder가 유명하다</li></ul><p id="6961c714-a37f-4d6a-9d0b-dd91be6cfe02" class="">
+</p><h3 id="51e22ea2-95cf-4941-80a9-8ede070e008f" class="">VAE의 중요 포인트 네 가지</h3><p id="5b3f9c17-c63f-4fc3-a03f-d91cc981af2b" class="">VAE를 제대로 이해하기 위해서는 코드부터 보는 것이 아니라 네 가지를 명심해야 한다.</p><ol id="d04ab0db-e078-4e2d-901d-84f1470166e4" class="numbered-list" start="1"><li>VAE는 Generative Model이라는 점</li></ol><ol id="0e3f955a-ff16-49d4-b95b-95a46a5d609a" class="numbered-list" start="2"><li>Latent Variable이라는 것이 있으며 이를 바탕으로 데이터를 생성한다는 것(Decoder)</li></ol><ol id="11937963-3fb6-4208-9fc3-f36865a1dda5" class="numbered-list" start="3"><li>문제를 더 쉽게 만들기 위해 Latent Variable이라는 것을 Encoder를 통해 추출한다는 것</li></ol><ol id="9ccf038e-ed41-4d52-8920-cede512ebe14" class="numbered-list" start="4"><li>VAE의 학습과정은 MLE라는 것</li></ol><p id="dc8bb759-730a-4d09-9c0e-517601e05dc7" class="">
+</p><p id="753113be-e945-4720-9ce2-9a19929ce36e" class="">Woongwon님께서는 위의 네 가지가 중요하다고 말씀해 주셨다.</p><p id="c46763de-7bd3-4c5a-9166-38afc7c094b4" class="">
+</p><h2 id="ddb2e6fc-1e18-4c21-b03b-13c98eb480d2" class="">#02. Generative Model</h2><ul id="5a62a312-6b0d-4451-990c-ee809735ca78" class="bulleted-list"><li>VAE는 일종의 Generative Model이라고 봐야한다.</li></ul><ul id="27f1405e-8836-428a-9e66-a4e96da94a40" class="bulleted-list"><li>Generative 모델이란 무엇인가?<ul id="981e19ac-f504-4b36-86ef-e885d2227901" class="bulleted-list"><li>training data가 주어졌을 때 이 data가 sampling된 분포와 같은 분포에서 새로운 sample을 생성하는 model이다.</li></ul><ul id="232104f2-ee9f-4489-8c68-79f1c037525f" class="bulleted-list"><li>즉 P_model(X)가 최대한 P_data(X)에 가깝게 만드는 것이 목표이다.</li></ul><ul id="979d3bd8-14cc-4053-a07b-f03f8e651890" class="bulleted-list"><li>결국 얼마나 기존 모델과 가까운 것인가에 대한 지표를 만들어야하고 그 차이를 최소화하도록 gradient를 계산해서 업데이트 해야하는 것이다.</li></ul><p id="e8854d50-739c-48f7-bada-e0b2d877aa12" class="">
+</p><p id="4048a07a-f901-41fd-8a4d-9e1556790d25" class="">Q1. Explicit density estimation</p><p id="a268952a-8b7d-4291-b94a-fa125fdeb898" class="">Q2. Implicit density estimation</p><p id="bf1380ad-ac8d-41a3-9126-dda10963edd0" class="">
+</p></li></ul><h3 id="1257af8a-e677-476f-8da8-c5aaf168d383" class="">Taxonomy of Generative Models</h3><figure id="2400378b-41df-4f44-9201-d32ba327dbe4" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled.png"><img style="width:1898px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled.png"/></a></figure><ul id="e02e0dbf-135c-4fa8-8907-9121e33daa62" class="bulleted-list"><li>위의 그림은 GAN의 창시자 Ian Goodfellow가 정리한 도표이다.</li></ul><ul id="336f9e16-16ed-4af8-9408-0f14c3163ce9" class="bulleted-list"><li>Generative Model은 크게 Explicit Density와 Implicit Density 두 가지로 나눌 수 있다.</li></ul><ul id="ad213945-67e0-49e9-aeb7-8801f8274ea6" class="bulleted-list"><li>Explicit Density 모델은 data를 샘플링한 모델의 구조를 명확히 정의한다. <ul id="d46397f5-4278-4594-8363-9a6642a29d37" class="bulleted-list"><li>정확히 정의한 모델로부터 data를 sampling하는 것이다.</li></ul></li></ul><ul id="025274ef-2fcd-4fe5-ae6a-c83a27829dfc" class="bulleted-list"><li>반면 Implicit Density에서는 모델에 대한 구조를 explicit하게 정의하지 않는다.<ul id="ec6546e9-7d5a-4c8b-9882-a39dbcd6b137" class="bulleted-list"><li>예를들어, GAN의 경우 noise로부터 data로의 transformation을 학습한다.</li></ul></li></ul><ul id="1b4440df-97f3-4198-9361-a383b1e52303" class="bulleted-list"><li>VAE는 data를 sampling할 density model을 explicit하게 정의해서 직접적으로 학습하는 경우라고 할 수 있다.</li></ul><p id="dce28eb9-b7e9-4a8b-b625-4b65a9b62a17" class="">
+</p><p id="aaded987-3886-47c3-93dd-cb3ea7395f73" class="">
+</p><figure id="21bc7d99-8904-4b1c-a5c9-f22a7c9150c2" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%201.png"><img style="width:936px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%201.png"/></a></figure><ul id="e0aa07a8-9292-4f4d-8bd6-677eb0a56e21" class="bulleted-list"><li>정리<ul id="233dacaf-64a2-4335-8e7e-0fb150a23616" class="bulleted-list"><li>density estimation은 x라는 데이터만 관찰할 수 있을 때, 관찰할 수 없는 x가 샘플링된 확률 밀도 함수(probability density function)을 estimate하는 것이다.</li></ul><ul id="93c6a31c-9b3d-457a-b6c2-8097cb80c1b6" class="bulleted-list"><li>다시 말해 Density estimation이 하는 것은<mark class="highlight-orange_background"> 이 데이터 포인트가 많은 곳은 확률이 높고 데이터 포인트가 없는 곳은 확률이 낮아지는 것</mark>이다.</li></ul><ul id="ced7d13b-43af-40f2-9ad5-d4fada4c3e22" class="bulleted-list"><li>이러한 확률분포(파란색 선)가 있다면 현재 데이터 포인트와 같지는 않지만 비슷한 데이터를 생성해 낼 수 있는 것이다.  </li></ul></li></ul><p id="f90974d1-fd9b-4146-aa04-46cee63e08aa" class="">위의 그림과 같이 <mark class="highlight-blue">파란색선의 확률분포</mark>를 얻을 수 있다면 데이터 포인트와 같지는 않지만 비슷한 데이터를 생성해 낼 수 있다는 것이다.</p><p id="325bd945-824b-48a8-825b-2f36d7f06186" class="">
+</p><ul id="61df62eb-756a-49a9-8a52-72d5042f5438" class="bulleted-list"><li>즉 확률밀도함수(최대한 P_data(X)에 가까운 P_model(X)를 찾아냈을 때) P_model(X)를 통해 새로운 데이터를 generate할 수 있으므로 Generative Model이라고 부르는 것이다.</li></ul><ul id="730e909a-9362-4551-8a4e-8be5b7b62e05" class="bulleted-list"><li>예를 들어 이미지의 경우 각 pixel은 0에서 255까지 나타낼 수 있으며 rgb는 3차원이므로 나타낼 수 있는 이미지의 양은 어마어마하게 많다. </li></ul><ul id="bfdbb461-1d65-4fd0-90d3-29175ad7e397" class="bulleted-list"><li>하지만 우리가 realistic이라고 느끼는 이미지들은 그 중에 정말 일부이다. 또한 데이터셋에 있는 이미지들은 그보다 더 일부일 것이다. </li></ul><ul id="e6868625-5f8f-479e-85c6-d83b719a5d5a" class="bulleted-list"><li>Generative Model은 그 엄청나게 큰 Space에서 realistic한 이미지를 샘플링할 수 있는 확률밀도함수이다.</li></ul><p id="e8c63cc6-5cd4-46dd-a0b0-34ef5733023b" class="">
+</p><p id="08459bbb-f581-4904-99cd-6a23c2dd3b6d" class="">Generative Model중에 가장 선명하고 가장 진짜같은 이미지를 생성하는 것은 GAN이다. GAN은 여러 변형체들이 많은데 그 중에 하나의 학습된 모델을 가지고 생성한 데이터 예시이다. </p><p id="a1b5a686-5a40-4e5f-9de8-bf1c471feb03" class="">
+</p><figure id="f40bab2b-c254-4dfb-8baf-bf386835bed0" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%202.png"><img style="width:1588px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%202.png"/></a></figure><p id="ac17028f-478a-4db4-abdd-1d4f997568ca" class="">하지만 <mark class="highlight-red">GAN의 경우 random noise로부터 데이터를 생성해내므로 데이터의 의미있는 representatrion을 학습할 수 없다.</mark> 이제 VAE에 대해 살펴보도록 한다.</p><p id="267db56a-39b4-4453-b7a5-f55a5c735a26" class="">
+</p><h2 id="b7616c6c-c015-4ada-984a-f63a205b13a5" class="">#03. Variational Auto-Encoder</h2><p id="747df638-a04b-47bf-8051-93ed65df853a" class="">앞으로 MNIST 데이터셋을 생성하는 Generative Model에 대해서 이야기하도록 한다.</p><p id="ef01e58d-2b51-4d85-8465-ee898257898b" class="">일단 probability density function을 정의한다.</p><p id="90a3c008-dac2-4009-a426-bfc030cc154a" class="">P_theta(X)라고 정의합니다. dataset은 X = [X(i)]i=1, N라고 할 수 있습니다. 이 때 dataset의 datapoint(X(i))는 i.i.d하다고 가정합니다.  </p><p id="80ff207a-ba3f-4dc2-9e7f-5dfa7406bf95" class="">이 density function theta라는 parameter가 정해졌을 때, X라는 데이터가 나올 확률이다. 이 확률을 최대화하는 것이 Generative Model 혹은 density estimation의 목표입니다. </p><p id="2deb9d19-064c-4cfc-8cc0-4aa6311ddd09" class="">이 식은 z라는 latent variable을 사용해서 다음과 같이 쓸 수 있습니다. 앞으로 우리는 이 식을 미분해서 그 미분값에 따라 stochastic gradient ascent를 할 것입니다. </p><p id="09f70779-e9b7-4be1-b7fc-ca852c6f60a4" class="">
+</p><figure id="b0871b4e-bb4f-461d-a9c6-0aad6a06940d" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%203.png"><img style="width:585px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%203.png"/></a></figure><p id="f0a321ab-4421-41cb-9faf-b9e36581ffec" class="">VAE에서는 Auto-Encoder와 달리 latent variable을 정의한다. </p><p id="61f8543a-6bb8-4f8d-a00f-7d7df97bbda7" class=""><em>그렇다면 왜 갑자기 latent variable라는게 등장했을까?</em></p><p id="ebecc4cf-059e-4df7-a53a-02ee5d3cf5ea" class="">우리가 생성하고 싶은 데이터들은 상당히 차원이 높고 예를 등어 data point의 pixel 사이에 복잡한 관계가 있다. 따라서 pixel 사이의 관계를 확률모델로 모델링하는 것이 아니라 데이터를 표현하는 z로부터 생성하는 모델을 만드는 것이다. </p><p id="96d63ffb-be5b-43e0-8426-567b963da0fb" class="">즉 데이터를 표현하는 latent vector z로부터 데이터를 생성하는 graphical model을 생각해보는 것이다.</p><p id="8b792f1c-cf52-44bf-878b-b3b460e50eb5" class="">
+</p><p id="f6a3cafc-761f-457a-a459-ef1ec6369335" class="">(1)식의 우변에서 p_theta(z)는 latent variable z를 sampling할 수 있는 확률밀도 함수이다. 그리고 p_theta(x|z)는 z가 주어졌을 떄 x를 생성해내는 확률밀도 함수이다.</p><p id="768ab18c-b1c7-429e-be49-064c7c25745a" class="">여기서 중요한 점은 이 p_theta(x|z)가 theta에 대해 미분가능해야한다는 것이다. </p><p id="45c0a11c-85fa-4d37-848c-a54703e7ff74" class="">
+</p><p id="42a43fcd-c07a-4e2c-9298-96973c445e4e" class="">VAE는 z를 구성하는 문제와 integral 문제를 해결해줍니다. </p><figure id="a7cceeea-0c73-4693-9175-17544fa0c4f5" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%204.png"><img style="width:1876px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%204.png"/></a></figure><p id="4323b0fd-05a6-473a-a3f7-58693d0adf60" class="">θ*는 dataset이 sampling된 true distribution의 parameter입니다. (이 분포는 parameterized 되었다고 가정합니다.)</p><p id="8596ee8b-913c-4950-ac1b-901efec5e3c7" class="">simple한 Gaussian분포로부터 z(i)를 sampling합니다. decode network pθ*(x|z)로부터 데이터를 생성합니다. </p><p id="0d09ed6f-8692-42fb-bd1e-af92632a8a01" class="">여기서 우리가 하고싶은 것은 θ*을 estimate 하는 것입니다.</p><p id="7e7b3ed5-3707-4b27-8d94-673cabd7fc57" class="">
+</p><p id="c55d6762-bdd9-4da1-af8c-4d7542762d6d" class=""><mark class="highlight-yellow">z</mark>는 사실 mnist에서 어떤 숫자인지만 나타내야하는 것이 아니라 <mark class="highlight-yellow">각 숫자마다도 다른 복잡한 특징들을 나타내야 합니다.</mark> 이것을 단순한 normal distribution으로 만들고 decoder network의 layer들이 알아서 data를 생성해내는데 필요한 정보를 추출하도록 하는 것입니다.</p><p id="10136646-a68c-42eb-b38c-7a3e28c1dfae" class="">
+</p><p id="1a2e9e28-1774-4a62-82d2-2cf5ca807431" class="">즉 여러층의 layer들이 있다면 앞의 층들은 normal distribution을 latent value로 변환해주는 일을 하는 거이고 뒤의 층들은 이 latent value를 가지고 realistic한 digit을 sampling할 수 있는 확률밀도함수를 만들어내는 것입니다. </p><p id="39ab61f7-47e7-46fb-95cf-59234fadc9d0" class="">
+</p><p id="b5bd66f8-8195-48ae-9eea-76b26907cb9e" class="">두 번째 문제인 integral의 경우 integral을 다 계산하지 않고 Monte-Carlo estimation을 통해 estimate할 것입니다. 여기서 Bayesian이 등장합니다.</p><p id="edd28631-f59f-4d94-9bf4-b4cba17ebcd9" class="">
+</p><p id="9e97a697-2172-4e9d-93e1-aea8a039a582" class="">대부분의 z에 대해서는 pθ(x|z)는 거의 0의 값을 가질 것입니다. 따라서 sampling이 상당히 많이 필요합니다. 데이터셋이 클 경우에 이것은 너무 cost가 큽니다.</p><p id="c004fb6c-d270-40a4-aab6-b36cbabd569a" class="">
+</p><p id="21f742e0-eda0-4a14-a83e-7dd1aee42a7f" class="">좀 더 efficient하게 이 sampling과정을 진행하려면 data에 dependent하게 z를 sampling할 필요가 있습니다. </p><p id="cc9c922e-694f-443d-bf38-0d53f68d153e" class="">
+</p><figure id="65d54a1d-0598-4f73-ae9b-311a5b2a6ccc" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%205.png"><img style="width:580px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%205.png"/></a></figure><p id="48c3063d-ef85-4b75-8bc2-8cd1bbb516b2" class="">따라서 pθ(z|x)를 생각해보는 것입니다. pθ(z|x)가 하는 역할은 x가 주어졌을 때 이 x를 생성해낼 것 같은 z에 대한 확률분포를 만드는 것입니다. </p><p id="d9d8bb91-3414-4814-9c35-47d7846b58a5" class="">
+</p><figure id="09f8ea4a-67d4-4759-a4f0-2cc908d2c424" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%206.png"><img style="width:560px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%206.png"/></a></figure><p id="03cdddf7-e4e0-4db7-834d-9b5d103f4ce3" class="">이것은 Bayes&#x27;rule에 의해 다음과 같이 쓸 수 있습니다.</p><p id="3254a589-7549-4f6d-88a9-e80ce323ff0e" class="">하지만 식 (1)에서 보듯이  pθ(x)를 계산하는 것은 intractable하므로 이 posterior 또한 intractable posterior가 됩니다. 따라서 이 posterior를 approximate하는 새로운 함수를 정의합니다.</p><p id="99f94a60-6404-4018-ae97-7c1adb3cab37" class="">
+</p><h3 id="3900295c-38f7-4fd1-b90d-2ee04cc48437" class="">posterioir를 approximate하는 새로운 함수 정의</h3><p id="563c875a-f47f-4383-b2cd-32ec0ea48a73" class="">ϕ라는 새로운 parameter로 표현되는 qϕ(z|x)는 일종의 encoder라고 볼 수 있다. </p><p id="4703c411-7448-4522-bef0-0d182d10f641" class="">원래의 posterior를 approximate 했기 때문에 error가 존재한다. 따라서 원래의 objective function에 대한 lower bound를 정의할 것이다.</p><p id="d3e240b3-66dd-41c6-a84d-0006e68a89ba" class="">
+</p><p id="a9f724d9-1572-44b0-9dd6-2d8a5310e719" class="">그 전에 VAE의 네트워크 구조를 살펴보자</p><ul id="fd41ece6-3a0b-46bb-97bb-bd4937e4ea29" class="bulleted-list"><li>Encoder는 qϕ(z|x)이며 x를 input으로 받아서 z space상에서 확률분포를 만든다</li></ul><ul id="89741834-b7cc-4c65-8db6-e0c9ed490508" class="bulleted-list"><li>이 확률분포는 gaussian이라고 가정해서 만든다.</li></ul><ul id="11a298ed-8ed5-40ab-9a90-2efd05c28573" class="bulleted-list"><li>이 data dependent한 gaussian 분포로부터 z를 sampling한다.</li></ul><ul id="f6a25ba3-5f0a-402c-8274-ae89c128a060" class="bulleted-list"><li>sampling된 z를 가지고 decoder pθ(x|z)는 x의 space 상의 gaussian distribution 혹은 Bernoulli distribution을 output으로 내놓는다.</li></ul><ul id="ea05c81d-2300-4478-8a32-19d2bcddd94d" class="bulleted-list"><li>그러면 x를 이 분포로부터 sampling할 수 있다.</li></ul><ul id="2c0316c9-c463-4869-b9f5-ffa58ae2bc1f" class="bulleted-list"><li>이러한 구조를 가지기 떄문에 Auto-Encoder가 되는 것이며 학습이 되고 나면 latent variable z라는 data의 의미있는 representation을 얻을 수 있다.</li></ul><figure id="ae484b7e-8dc5-49d1-81fa-d7239ad173b2" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%207.png"><img style="width:1908px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%207.png"/></a></figure><p id="049dd02d-b8e3-4fad-9ff2-f844ba93e8d0" class="">
+</p><h2 id="4a5a5b69-8b45-4cd0-a724-e77b4c70e093" class="">#4. ELBO(Evidence Lower Bound)</h2><ul id="84c36097-d785-4efd-bbfa-a7ee10f18c70" class="bulleted-list"><li>이제 VAE를 어떻게 학습시키는지 살펴보기 위해 objective function을 변형시켜보자</li></ul><ul id="2ecc179f-0ff3-4a19-98c1-f151ee5b0cdd" class="bulleted-list"><li>log likelihood는 다음과 같다. </li></ul><ul id="b5dbc806-f4a5-4c0d-90a5-107b79ca145d" class="bulleted-list"><li>이 값을 최대화 시키는 것이 목표이다.</li></ul><figure id="cf7e3c0f-d958-4cc5-b326-909c0c1da4ed" class="image"><a href="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%208.png"><img style="width:546px" src="Lecture%2013%20Background%20Knowledge%202400378b41df4f449201d32ba327dbe4/Untitled%208.png"/></a></figure><p id="bf276f88-69bd-4f9c-84b1-d632750af513" class="">
+</p><p id="3502bc03-b2c0-403b-90ff-5b1f83f325a8" class="">
+</p><p id="2a986302-26df-4c9f-9827-5bf4d0f93e00" class="">
+</p><p id="37951bd9-bfbc-4979-8954-e8e90c27fc4f" class="">
+</p><p id="6264d19b-8b2a-4818-99e9-fdb147a5a730" class="">
+</p><p id="56d644a6-3bcb-4cc9-8577-645d6c1a4e92" class="">
+</p><p id="3af0269b-1e0c-4414-867a-723a6632e599" class="">
+</p><p id="f78c7260-d32a-4dd0-9fe1-036608154655" class="">
+</p><p id="6fd6526e-641c-4d84-9520-43ac749b415b" class="">
+</p><p id="8bcd986a-ca67-49c8-849c-2998922c5e42" class="">
+</p><p id="6dd56c51-fccf-4c6a-b0b1-1af5f98b4945" class="">
+</p><p id="808e6bd2-ba21-46d1-a802-ab332896009c" class="">
+</p><p id="76659191-e13b-492a-a2cb-8f0688f57b3f" class="">
+</p><p id="20b633f0-8615-4cfc-93ad-7ea909eede52" class="">
+</p><p id="28196798-98c6-42d7-a0c8-890e5695538b" class="">
+</p><p id="762a8c9d-d53a-4fdc-ae51-03f403deed48" class="">
+</p><p id="06799d42-c06f-4177-8daf-312c5eaa5197" class="">
+</p><p id="9770c37f-f2d0-4fa5-aa94-10262ff2c1c4" class="">
+</p><p id="fb452f4b-2de1-42db-923f-418ee641781a" class="">
+</p><p id="7e1e44a6-695a-4337-8b0c-90b73493900f" class="">
+</p><p id="705176b7-988d-4026-95d4-792fabb401ff" class="">
+</p><p id="5c6165c5-a6c1-4771-bb52-93edbe7d5f36" class="">
+</p><p id="3452ac80-e4db-484c-aeaf-5a7102751e4f" class="">
+</p><p id="a333a379-d8d2-429d-8238-264077357407" class="">
+</p><p id="ffaf3b7f-3c24-4224-9db5-fb1edb88f7f4" class="">
+</p><p id="f83820b1-a836-403d-b01a-bcf1d884ef70" class="">
+</p><p id="8c4fbfbf-435f-4edf-8831-47780ac64664" class="">
+</p><p id="e67e0666-b0c0-435d-aebe-b06687c5c749" class="">
+</p><p id="4c08b292-3e41-4285-92d1-0166137d01af" class="">
+</p><p id="daef554b-11d6-4710-984e-a93104fb6339" class="">
+</p><p id="77ad4e24-f09e-4a05-b8b0-97225302fb07" class="">
+</p><p id="3051a86c-2d53-4aea-9781-c2f7493a5c28" class="">
+</p><p id="cfae415a-f0bd-46fe-bf5f-58682fe38a3e" class="">
+</p><p id="ee7e7ee2-f00f-43e1-ad76-2224a48dd66f" class="">
+</p><p id="74f30164-e1f5-4aa4-b421-7dc15f2364c5" class="">
+</p><p id="cc2a4015-664b-41bb-9356-b4ab7527fb9f" class="">
+</p><p id="0cff24a2-31ba-425e-af0b-ab391e88818e" class="">
+</p><p id="6875ea65-b2c7-49ce-a962-a96f8d6079ec" class="">
+</p><p id="9872605e-f621-4082-bf32-a489ad57cf1e" class="">
+</p><p id="e8a14cc4-dc35-4209-ad8a-13af22deb818" class="">
+</p><p id="288647b6-690d-45e5-a7f2-09ddd11171c7" class="">
+</p><p id="56fed5e3-60f5-47c2-a074-19af1625ae76" class="">
+</p><p id="96100453-dba1-4aff-95de-bab11fdb2fc1" class="">
+</p><p id="54440613-691c-44c6-93ba-361d3f3c8362" class="">
+</p><p id="9a39833f-9f2d-4133-8240-9835edfbc548" class="">
+</p></div></article></body></html>
